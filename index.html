@@ -1,35 +1,1504 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>98.6° – Metabolic Health Companion</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #FAF5EF;
-      color: #17324B;
-    }
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 3rem 1.5rem;
-    }
-    .hero-inner {
-      max-width: 960px;
-      width: 100%;
-    }
-  </style>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+
+<!-- Perplexity Computer Attribution — SEO Meta Tags -->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>98.6° — Your Metabolic Health Companion</title>
+<meta name="description" content="Track your temperature and pulse. See your metabolic patterns. Bring real data to your doctor. One-time purchase, lifetime access. No subscriptions.">
+<meta property="og:title" content="98.6° — Your Metabolic Health Companion">
+<meta property="og:description" content="Track your temperature and pulse. See your metabolic patterns. Bring real data to your doctor.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Brand Palette */
+  --teal: #4CB7A5;
+  --teal-dark: #3a9a8a;
+  --teal-light: #e0f3ef;
+  --navy: #1F3654;
+  --sand: #F7F1E8;
+  --coral: #E88868;
+  --coral-light: #fdf0eb;
+  --off-white: #FFFDF8;
+  --sage: #D7E3DC;
+  --muted-brown: #8A7565;
+  --light-grey: #E3E0DA;
+  --body-grey: #4A4A4A;
+  --error: #D9534F;
+
+  /* Typography */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Fluid Type Scale */
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+  --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+  --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(31, 54, 84, 0.06);
+  --shadow-md: 0 4px 16px rgba(31, 54, 84, 0.08);
+  --shadow-lg: 0 12px 40px rgba(31, 54, 84, 0.12);
+
+  /* Transitions */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--space-20);
+}
+
+body {
+  min-height: 100dvh;
+  line-height: 1.6;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--navy);
+  background-color: var(--off-white);
+}
+
+img { display: block; max-width: 100%; height: auto; }
+h1, h2, h3, h4 { text-wrap: balance; line-height: 1.2; font-family: var(--font-display); }
+p, li, figcaption { text-wrap: pretty; max-width: 72ch; }
+button { cursor: pointer; background: none; border: none; font: inherit; }
+
+a, button {
+  transition: color 180ms var(--ease),
+              background 180ms var(--ease),
+              border-color 180ms var(--ease),
+              box-shadow 180ms var(--ease),
+              transform 180ms var(--ease);
+}
+
+::selection {
+  background: rgba(76, 183, 165, 0.2);
+  color: var(--navy);
+}
+
+:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0;
+}
+
+/* ============================================
+   LAYOUT UTILITIES
+   ============================================ */
+.container {
+  width: 100%;
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+}
+
+.container--narrow {
+  max-width: 780px;
+}
+
+.section {
+  padding-block: clamp(var(--space-16), 8vw, var(--space-32));
+}
+
+.text-center { text-align: center; }
+
+/* ============================================
+   HEADER / NAV
+   ============================================ */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 253, 248, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--light-grey);
+  transition: box-shadow 300ms var(--ease);
+}
+
+.header--scrolled {
+  box-shadow: var(--shadow-sm);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: var(--space-4);
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+}
+
+.header__logo {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--navy);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.header__logo .degree {
+  color: var(--teal);
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  list-style: none;
+}
+
+.header__nav a {
+  font-size: var(--text-sm);
+  color: var(--body-grey);
+  text-decoration: none;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.header__nav a:hover {
+  color: var(--teal);
+}
+
+.header__cta {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-2) var(--space-5);
+  background: var(--teal);
+  color: #fff !important;
+  border-radius: var(--radius-lg);
+  font-weight: 500;
+  font-size: var(--text-sm);
+  text-decoration: none;
+}
+
+.header__cta:hover {
+  background: var(--teal-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Mobile nav */
+.header__menu-btn {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: var(--space-2);
+  margin-left: auto;
+}
+
+.header__menu-btn span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--navy);
+  border-radius: 2px;
+  transition: transform 300ms var(--ease), opacity 300ms var(--ease);
+}
+
+@media (max-width: 768px) {
+  .header__nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--off-white);
+    flex-direction: column;
+    padding: var(--space-6);
+    gap: var(--space-5);
+    border-bottom: 1px solid var(--light-grey);
+    box-shadow: var(--shadow-md);
+  }
+
+  .header__nav.open {
+    display: flex;
+  }
+
+  .header__nav a,
+  .header__nav .header__cta {
+    font-size: var(--text-base);
+  }
+
+  .header__menu-btn {
+    display: flex;
+  }
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-top: clamp(var(--space-16), 10vw, var(--space-32));
+  padding-bottom: clamp(var(--space-12), 6vw, var(--space-24));
+  background: linear-gradient(175deg, var(--off-white) 0%, var(--sand) 50%, var(--sage) 100%);
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: rgba(76, 183, 165, 0.1);
+  border: 1px solid rgba(76, 183, 165, 0.25);
+  border-radius: var(--radius-xl);
+  font-size: var(--text-sm);
+  color: var(--teal-dark);
+  margin-bottom: var(--space-8);
+  font-weight: 500;
+}
+
+.hero h1 {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--navy);
+  max-width: 18ch;
+  margin-inline: auto;
+  margin-bottom: var(--space-6);
+  letter-spacing: -0.02em;
+}
+
+.hero__sub {
+  font-size: var(--text-lg);
+  color: var(--body-grey);
+  max-width: 48ch;
+  margin-inline: auto;
+  margin-bottom: var(--space-10);
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-12);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-lg);
+  font-weight: 500;
+  font-size: var(--text-base);
+  text-decoration: none;
+  min-height: 48px;
+}
+
+.btn--primary {
+  background: var(--teal);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(76, 183, 165, 0.3);
+}
+
+.btn--primary:hover {
+  background: var(--teal-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(76, 183, 165, 0.4);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--navy);
+  border: 1.5px solid var(--light-grey);
+}
+
+.btn--outline:hover {
+  border-color: var(--teal);
+  color: var(--teal);
+}
+
+.hero__proof {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-8);
+  color: var(--muted-brown);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-12);
+}
+
+.hero__proof span {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.hero__image-wrap {
+  position: relative;
+  max-width: 900px;
+  margin-inline: auto;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.hero__image-wrap img {
+  width: 100%;
+  height: auto;
+}
+
+/* ============================================
+   WHO THIS IS FOR
+   ============================================ */
+.who-for {
+  background: var(--off-white);
+}
+
+.who-for__header {
+  text-align: center;
+  margin-bottom: clamp(var(--space-10), 4vw, var(--space-16));
+}
+
+.section-label {
+  display: inline-block;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--teal);
+  margin-bottom: var(--space-4);
+}
+
+.who-for__header h2 {
+  font-size: var(--text-xl);
+  color: var(--navy);
+  margin-bottom: var(--space-4);
+}
+
+.who-for__header p {
+  font-size: var(--text-base);
+  color: var(--body-grey);
+  max-width: 50ch;
+  margin-inline: auto;
+}
+
+.who-for__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-6);
+}
+
+.persona-card {
+  background: var(--sand);
+  padding: var(--space-8);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--light-grey);
+  transition: box-shadow 300ms var(--ease), transform 300ms var(--ease);
+}
+
+.persona-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.persona-card__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--teal-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-5);
+  font-size: 1.4rem;
+}
+
+.persona-card h3 {
+  font-size: var(--text-lg);
+  color: var(--navy);
+  margin-bottom: var(--space-3);
+  font-family: var(--font-display);
+}
+
+.persona-card p {
+  color: var(--body-grey);
+  font-size: var(--text-base);
+  line-height: 1.6;
+}
+
+/* ============================================
+   WHAT IS METABOLISM
+   ============================================ */
+.metabolism {
+  background: var(--sand);
+}
+
+.metabolism__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(var(--space-10), 5vw, var(--space-16));
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .metabolism__inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+.metabolism__text h2 {
+  font-size: var(--text-xl);
+  color: var(--navy);
+  margin-bottom: var(--space-6);
+}
+
+.metabolism__text p {
+  color: var(--body-grey);
+  margin-bottom: var(--space-5);
+  line-height: 1.7;
+}
+
+.metabolism__text p:last-child {
+  margin-bottom: 0;
+}
+
+.metabolism__visual {
+  position: relative;
+}
+
+.temp-card {
+  background: var(--off-white);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+}
+
+.temp-card__number {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 2rem + 5vw, 5.5rem);
+  font-weight: 700;
+  color: var(--teal);
+  line-height: 1;
+  margin-bottom: var(--space-3);
+}
+
+.temp-card__label {
+  font-size: var(--text-sm);
+  color: var(--muted-brown);
+  margin-bottom: var(--space-6);
+}
+
+.temp-card__bars {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.temp-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.temp-bar__label {
+  font-size: var(--text-xs);
+  color: var(--body-grey);
+  min-width: 4.5rem;
+  text-align: right;
+}
+
+.temp-bar__track {
+  flex: 1;
+  height: 8px;
+  background: var(--light-grey);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.temp-bar__fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 800ms var(--ease);
+}
+
+.temp-bar__fill--low { background: #a3c4d9; width: 45%; }
+.temp-bar__fill--mid { background: var(--teal); width: 72%; }
+.temp-bar__fill--good { background: var(--teal); width: 90%; }
+.temp-bar__fill--high { background: var(--coral); width: 60%; }
+
+/* ============================================
+   HOW IT WORKS
+   ============================================ */
+.how-works {
+  background: var(--off-white);
+}
+
+.how-works__header {
+  text-align: center;
+  margin-bottom: clamp(var(--space-10), 4vw, var(--space-16));
+}
+
+.how-works__header h2 {
+  font-size: var(--text-xl);
+  color: var(--navy);
+  margin-bottom: var(--space-4);
+}
+
+.how-works__header p {
+  font-size: var(--text-base);
+  color: var(--body-grey);
+  max-width: 50ch;
+  margin-inline: auto;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-8);
+  counter-reset: step-counter;
+}
+
+@media (max-width: 768px) {
+  .steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+.step {
+  position: relative;
+  counter-increment: step-counter;
+}
+
+.step__number {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--teal-light);
+  line-height: 1;
+  margin-bottom: var(--space-4);
+}
+
+.step h3 {
+  font-size: var(--text-lg);
+  color: var(--navy);
+  margin-bottom: var(--space-3);
+  font-family: var(--font-display);
+}
+
+.step p {
+  color: var(--body-grey);
+  line-height: 1.7;
+}
+
+.step__icon-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.step__tag {
+  display: inline-flex;
+  padding: var(--space-1) var(--space-3);
+  background: var(--sand);
+  border: 1px solid var(--light-grey);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-xs);
+  color: var(--body-grey);
+}
+
+/* ============================================
+   WHATS INSIDE
+   ============================================ */
+.whats-inside {
+  background: var(--navy);
+  color: #fff;
+}
+
+.whats-inside h2 {
+  font-size: var(--text-xl);
+  text-align: center;
+  margin-bottom: var(--space-4);
+  color: #fff;
+}
+
+.whats-inside__subtitle {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.65);
+  max-width: 50ch;
+  margin-inline: auto;
+  margin-bottom: clamp(var(--space-10), 4vw, var(--space-16));
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-6);
+}
+
+.feature-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  transition: background 300ms var(--ease), border-color 300ms var(--ease);
+}
+
+.feature-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(76, 183, 165, 0.4);
+}
+
+.feature-card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: rgba(76, 183, 165, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-5);
+  font-size: 1.25rem;
+}
+
+.feature-card h3 {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+  color: #fff;
+  font-family: var(--font-display);
+}
+
+.feature-card p {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.7;
+  font-size: var(--text-base);
+}
+
+/* ============================================
+   PRICING
+   ============================================ */
+.pricing {
+  background: var(--sand);
+}
+
+.pricing__header {
+  text-align: center;
+  margin-bottom: clamp(var(--space-10), 4vw, var(--space-16));
+}
+
+.pricing__header h2 {
+  font-size: var(--text-xl);
+  color: var(--navy);
+  margin-bottom: var(--space-4);
+}
+
+.pricing__header p {
+  color: var(--body-grey);
+  max-width: 48ch;
+  margin-inline: auto;
+}
+
+.pricing-card {
+  max-width: 520px;
+  margin-inline: auto;
+  background: var(--off-white);
+  border-radius: var(--radius-xl);
+  padding: clamp(var(--space-8), 4vw, var(--space-12));
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+  border: 2px solid var(--teal);
+  position: relative;
+  overflow: hidden;
+}
+
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--teal), var(--coral));
+}
+
+.pricing-card__price {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 1.5rem + 3vw, 4rem);
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+
+.pricing-card__term {
+  font-size: var(--text-sm);
+  color: var(--muted-brown);
+  margin-bottom: var(--space-6);
+}
+
+.pricing-card__term strong {
+  color: var(--teal);
+  font-weight: 600;
+}
+
+.pricing-card__divider {
+  height: 1px;
+  background: var(--light-grey);
+  margin-block: var(--space-6);
+}
+
+.pricing-card__list {
+  list-style: none;
+  text-align: left;
+  margin-bottom: var(--space-8);
+}
+
+.pricing-card__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding-block: var(--space-3);
+  color: var(--body-grey);
+  font-size: var(--text-base);
+  line-height: 1.5;
+}
+
+.pricing-card__list li::before {
+  content: '';
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  background: var(--teal-light);
+  border-radius: 50%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M8.5 13.5l-3-3 1-1 2 2 5-5 1 1-6 6z' fill='%234CB7A5'/%3E%3C/svg%3E");
+  background-size: 20px;
+  background-repeat: no-repeat;
+}
+
+.pricing-card .btn--primary {
+  width: 100%;
+  font-size: var(--text-base);
+  padding: var(--space-5) var(--space-8);
+}
+
+.pricing__guarantee {
+  text-align: center;
+  margin-top: var(--space-8);
+  max-width: 520px;
+  margin-inline: auto;
+}
+
+.pricing__guarantee p {
+  color: var(--body-grey);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+  margin-inline: auto;
+}
+
+.pricing__guarantee strong {
+  color: var(--navy);
+}
+
+/* ============================================
+   FAQ
+   ============================================ */
+.faq {
+  background: var(--off-white);
+}
+
+.faq__header {
+  text-align: center;
+  margin-bottom: clamp(var(--space-10), 4vw, var(--space-16));
+}
+
+.faq__header h2 {
+  font-size: var(--text-xl);
+  color: var(--navy);
+  margin-bottom: var(--space-4);
+}
+
+.faq__list {
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.faq__item {
+  border-bottom: 1px solid var(--light-grey);
+}
+
+.faq__item:first-child {
+  border-top: 1px solid var(--light-grey);
+}
+
+.faq__question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-6) 0;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: var(--navy);
+  text-align: left;
+  cursor: pointer;
+}
+
+.faq__question:hover {
+  color: var(--teal);
+}
+
+.faq__icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  transition: transform 300ms var(--ease);
+}
+
+.faq__item.open .faq__icon {
+  transform: rotate(45deg);
+}
+
+.faq__answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 400ms var(--ease), padding 400ms var(--ease);
+}
+
+.faq__item.open .faq__answer {
+  max-height: 300px;
+  padding-bottom: var(--space-6);
+}
+
+.faq__answer p {
+  color: var(--body-grey);
+  line-height: 1.7;
+}
+
+/* ============================================
+   FINAL CTA
+   ============================================ */
+.final-cta {
+  background: linear-gradient(175deg, var(--sage) 0%, var(--sand) 100%);
+  text-align: center;
+}
+
+.final-cta h2 {
+  font-size: var(--text-xl);
+  color: var(--navy);
+  margin-bottom: var(--space-5);
+}
+
+.final-cta p {
+  color: var(--body-grey);
+  max-width: 44ch;
+  margin-inline: auto;
+  margin-bottom: var(--space-8);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  background: var(--navy);
+  color: rgba(255, 255, 255, 0.5);
+  padding-block: var(--space-10);
+}
+
+.footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.footer__brand {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.footer__brand .degree {
+  color: var(--teal);
+}
+
+.footer__links {
+  display: flex;
+  gap: var(--space-6);
+  list-style: none;
+}
+
+.footer__links a {
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  font-size: var(--text-xs);
+}
+
+.footer__links a:hover {
+  color: var(--teal);
+}
+
+.footer__bottom {
+  margin-top: var(--space-8);
+  padding-top: var(--space-6);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-4);
+  font-size: var(--text-xs);
+}
+
+.footer__bottom a {
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+}
+
+.footer__bottom a:hover {
+  color: var(--teal);
+}
+
+/* ============================================
+   SCROLL ANIMATIONS
+   ============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 700ms var(--ease), transform 700ms var(--ease);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children */
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 500ms var(--ease), transform 500ms var(--ease);
+}
+
+.reveal-stagger.visible > *:nth-child(1) { transition-delay: 0ms; opacity: 1; transform: translateY(0); }
+.reveal-stagger.visible > *:nth-child(2) { transition-delay: 80ms; opacity: 1; transform: translateY(0); }
+.reveal-stagger.visible > *:nth-child(3) { transition-delay: 160ms; opacity: 1; transform: translateY(0); }
+.reveal-stagger.visible > *:nth-child(4) { transition-delay: 240ms; opacity: 1; transform: translateY(0); }
+.reveal-stagger.visible > *:nth-child(5) { transition-delay: 320ms; opacity: 1; transform: translateY(0); }
+.reveal-stagger.visible > *:nth-child(6) { transition-delay: 400ms; opacity: 1; transform: translateY(0); }
+</style>
 </head>
+
 <body>
-  <section class="hero">
-    <div class="hero-inner">
-      <h1>98.6° – Understand Your Metabolism at a Glance</h1>
-      <p>Simple temperature and pulse tracking that turns daily readings into clear metabolic patterns.</p>
+  <!-- ==================== HEADER ==================== -->
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="#" class="header__logo">
+        98.6<span class="degree">°</span>
+      </a>
+
+      <button class="header__menu-btn" aria-label="Toggle navigation" id="menu-btn">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav>
+        <ul class="header__nav" id="main-nav">
+          <li><a href="#who-for">Who It's For</a></li>
+          <li><a href="#how-works">How It Works</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#pricing" class="header__cta">Get 98.6°</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero section" id="hero">
+    <div class="container hero__content">
+      <span class="hero__badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v8m0 0l-2-2m2 2l2-2M5 12a7 7 0 0014 0"/></svg>
+        One-time purchase. Lifetime access.
+      </span>
+
+      <h1>Finally see what your metabolism is telling you</h1>
+
+      <p class="hero__sub">Track your temperature and pulse every day. Spot patterns your doctor can't see in a single blood draw. Bring real data to your next visit.</p>
+
+      <div class="hero__actions">
+        <a href="#pricing" class="btn btn--primary">Get 98.6° for $59.99</a>
+        <a href="#how-works" class="btn btn--outline">See how it works</a>
+      </div>
+
+      <div class="hero__proof">
+        <span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+          120+ peer-reviewed studies
+        </span>
+        <span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+          No subscriptions, ever
+        </span>
+        <span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+          Doctor-ready reports
+        </span>
+      </div>
+
+      <div class="hero__image-wrap reveal">
+        <img src="./assets/hero-coastal.png" alt="Watercolor coastal scene of Monterey Bay at dawn, setting the calm tone of the 98.6° brand" width="900" height="506" loading="eager">
+      </div>
     </div>
   </section>
+
+  <!-- ==================== WHO THIS IS FOR ==================== -->
+  <section class="who-for section" id="who-for">
+    <div class="container">
+      <div class="who-for__header reveal">
+        <span class="section-label">Who This Is For</span>
+        <h2>Built for people who actually track their temperature</h2>
+        <p>You know something is off. Your labs say "normal." But cold hands, brain fog, and fatigue don't lie. This app gives your body a voice.</p>
+      </div>
+
+      <div class="who-for__grid reveal-stagger">
+        <div class="persona-card">
+          <div class="persona-card__icon">🌡️</div>
+          <h3>The Frustrated Patient</h3>
+          <p>Your doctor says your labs look fine, but you feel terrible. You want real data that shows what's happening in your body over time, not just one snapshot.</p>
+        </div>
+
+        <div class="persona-card">
+          <div class="persona-card__icon">📓</div>
+          <h3>The Scattered Tracker</h3>
+          <p>You've tried Notes, spreadsheets, and paper notebooks. Your data is everywhere and nowhere. You need one place that makes tracking easy and useful.</p>
+        </div>
+
+        <div class="persona-card">
+          <div class="persona-card__icon">🔬</div>
+          <h3>The Self-Taught Researcher</h3>
+          <p>You've read the studies. You follow pro-metabolic ideas. You want a tool that speaks your language and tracks what actually matters: temperature and pulse.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== WHAT IS YOUR METABOLISM ==================== -->
+  <section class="metabolism section" id="metabolism">
+    <div class="container">
+      <div class="metabolism__inner">
+        <div class="metabolism__text reveal">
+          <span class="section-label">Understanding Your Body</span>
+          <h2>What is your metabolism, really?</h2>
+          <p>Your metabolism is how your body makes energy. When it works well, you feel warm, focused, and steady. When it slows down, you feel cold, tired, and foggy.</p>
+          <p>Two simple numbers tell you a lot: your body temperature and your resting pulse. Together, they paint a picture that a single blood test often misses.</p>
+          <p>Researchers like Dr. Broda Barnes showed decades ago that tracking temperature over time reveals patterns that standard lab work can overlook. 98.6° helps you see those patterns clearly.</p>
+        </div>
+
+        <div class="metabolism__visual reveal">
+          <div class="temp-card">
+            <div class="temp-card__number">98.6°</div>
+            <div class="temp-card__label">The number that matters</div>
+            <div class="temp-card__bars">
+              <div class="temp-bar">
+                <span class="temp-bar__label">Waking</span>
+                <div class="temp-bar__track"><div class="temp-bar__fill temp-bar__fill--low"></div></div>
+              </div>
+              <div class="temp-bar">
+                <span class="temp-bar__label">Morning</span>
+                <div class="temp-bar__track"><div class="temp-bar__fill temp-bar__fill--mid"></div></div>
+              </div>
+              <div class="temp-bar">
+                <span class="temp-bar__label">Afternoon</span>
+                <div class="temp-bar__track"><div class="temp-bar__fill temp-bar__fill--good"></div></div>
+              </div>
+              <div class="temp-bar">
+                <span class="temp-bar__label">Evening</span>
+                <div class="temp-bar__track"><div class="temp-bar__fill temp-bar__fill--high"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== HOW 98.6 WORKS ==================== -->
+  <section class="how-works section" id="how-works">
+    <div class="container">
+      <div class="how-works__header reveal">
+        <span class="section-label">How It Works</span>
+        <h2>Three steps. Under five seconds each.</h2>
+        <p>No complicated setup. No hardware needed. Just a simple thermometer you already own.</p>
+      </div>
+
+      <div class="steps reveal-stagger">
+        <div class="step">
+          <div class="step__number">01</div>
+          <h3>Log your reading</h3>
+          <p>Tap the quick-add button. Enter your temperature and pulse. The app picks the right time slot for you. Done in under five seconds.</p>
+          <div class="step__icon-row">
+            <span class="step__tag">Temperature</span>
+            <span class="step__tag">Pulse</span>
+            <span class="step__tag">Tags</span>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step__number">02</div>
+          <h3>See your patterns</h3>
+          <p>Watch your trends over 7, 30, 60, or 90 days. Filter by time of day. See how food, sleep, and stress connect to your numbers.</p>
+          <div class="step__icon-row">
+            <span class="step__tag">Charts</span>
+            <span class="step__tag">Trends</span>
+            <span class="step__tag">Filters</span>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step__number">03</div>
+          <h3>Share with your doctor</h3>
+          <p>Generate a clean, professional "Metabolic Vitals Summary" PDF. Bring real data to your next appointment. No more guessing.</p>
+          <div class="step__icon-row">
+            <span class="step__tag">PDF Report</span>
+            <span class="step__tag">CSV Export</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== WHAT'S INSIDE ==================== -->
+  <section class="whats-inside section" id="features">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label" style="color: var(--teal);">What's Inside</span>
+        <h2>Everything you need. Nothing you don't.</h2>
+        <p class="whats-inside__subtitle">No ads. No tracking. No upsells. Just tools that help you understand your body better.</p>
+      </div>
+
+      <div class="features-grid reveal-stagger">
+        <div class="feature-card">
+          <div class="feature-card__icon">📊</div>
+          <h3>Multi-Point Daily Tracker</h3>
+          <p>Log temperature and pulse across five time slots. Add tags for food, sleep, stress, symptoms, and supplements. Build a picture only daily tracking can reveal.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card__icon">⚡</div>
+          <h3>5-Second Quick Add</h3>
+          <p>A floating button on every screen. One tap opens a slide-up form. Your time slot is already picked. Enter your numbers and save. That's it.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card__icon">📚</div>
+          <h3>Research Library</h3>
+          <p>21 compounds explained in plain language. Each entry includes what it is, how it works, research findings, food sources, and important cautions. Built on 120+ peer-reviewed studies.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card__icon">📈</div>
+          <h3>Charts &amp; Trend Views</h3>
+          <p>See your data as clear line charts over 7 to 90 days. Filter by time slot. Background bands show the ranges that researchers look for.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card__icon">🩺</div>
+          <h3>Doctor-Ready Reports</h3>
+          <p>One-tap PDF export with averages, trend lines, and clinical reference ranges. Labeled clearly as self-reported data. Made for real conversations with your provider.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card__icon">🔒</div>
+          <h3>Your Data Stays Yours</h3>
+          <p>Everything is stored on your device. No cloud accounts, no third-party tracking, no data sales. Export to CSV anytime for your own analysis.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PRICING ==================== -->
+  <section class="pricing section" id="pricing">
+    <div class="container">
+      <div class="pricing__header reveal">
+        <span class="section-label">Simple Pricing</span>
+        <h2>One price. Lifetime access.</h2>
+        <p>No subscriptions. No hidden fees. Pay once and the app is yours forever.</p>
+      </div>
+
+      <div class="pricing-card reveal">
+        <div class="pricing-card__price">$59.99</div>
+        <div class="pricing-card__term">One-time purchase &middot; <strong>Lifetime access</strong></div>
+
+        <div class="pricing-card__divider"></div>
+
+        <ul class="pricing-card__list">
+          <li>Multi-point daily temperature and pulse tracker</li>
+          <li>5-second Quick Add from any screen</li>
+          <li>Research Library with 21 compounds and 120+ studies</li>
+          <li>Charts and trend views (7, 30, 60, 90 days)</li>
+          <li>Doctor-ready PDF reports</li>
+          <li>Supplement log and CSV export</li>
+          <li>All future updates included</li>
+          <li>No ads, no tracking, no data sales</li>
+        </ul>
+
+        <a href="#" class="btn btn--primary">Get 98.6° Now</a>
+      </div>
+
+      <div class="pricing__guarantee reveal">
+        <p><strong>Simple Guarantee:</strong> If 98.6° doesn't help you understand your metabolism better within 30 days, reach out and we'll make it right. No complicated fine print.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FAQ ==================== -->
+  <section class="faq section" id="faq">
+    <div class="container">
+      <div class="faq__header reveal">
+        <span class="section-label">Questions</span>
+        <h2>Frequently Asked Questions</h2>
+      </div>
+
+      <div class="faq__list reveal">
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            Is 98.6° a medical app?
+            <svg class="faq__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq__answer">
+            <p>No. 98.6° is an educational and self-tracking tool. It does not diagnose, treat, or prescribe anything. The research library and tracking features are designed to help you understand your own data and have better conversations with your doctor.</p>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            What do I need to get started?
+            <svg class="faq__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq__answer">
+            <p>A simple digital thermometer and your finger on your wrist. That's it. No special hardware, no wearables, no Bluetooth devices. 98.6° works as a web app in your browser on any phone, tablet, or computer.</p>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            Is my data stored in the cloud?
+            <svg class="faq__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq__answer">
+            <p>No. All your data stays on your device. There are no accounts, no cloud sync, and no third-party access. You can export your data anytime as a CSV file for your own records.</p>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            Why temperature and pulse instead of a CGM or wearable?
+            <svg class="faq__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq__answer">
+            <p>Temperature and pulse are two of the oldest and most reliable metabolic signals. They cost nothing to measure and research dating back to Dr. Broda Barnes shows they can reveal patterns that even blood panels miss. No expensive hardware needed.</p>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            What is the Research Library?
+            <svg class="faq__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq__answer">
+            <p>A curated collection of 21 compounds (vitamins, minerals, amino acids, and more) that research connects to metabolic health. Each entry explains what it is, how it works, key studies, food sources, and important cautions. All written in plain language you can actually read.</p>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            Is there a subscription after I buy?
+            <svg class="faq__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq__answer">
+            <p>No. You pay once and have lifetime access. There are no monthly fees, no premium tiers, and no upsells. Future updates are included.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FINAL CTA ==================== -->
+  <section class="final-cta section">
+    <div class="container reveal">
+      <h2>Your body has been talking. Start listening.</h2>
+      <p>Less guesswork. More patterns you can actually see. One purchase. Yours forever.</p>
+      <a href="#pricing" class="btn btn--primary">Get 98.6° for $59.99</a>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">98.6<span class="degree">°</span></div>
+        <ul class="footer__links">
+          <li><a href="#who-for">Who It's For</a></li>
+          <li><a href="#how-works">How It Works</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 98.6°. All rights reserved. This app is for educational purposes only and does not provide medical advice.</span>
+        <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== SCRIPTS ==================== -->
+  <script>
+  (function() {
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const nav = document.getElementById('main-nav');
+    if (menuBtn && nav) {
+      menuBtn.addEventListener('click', function() {
+        nav.classList.toggle('open');
+        const isOpen = nav.classList.contains('open');
+        menuBtn.setAttribute('aria-expanded', isOpen);
+      });
+      // Close nav on link click
+      nav.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          nav.classList.remove('open');
+        });
+      });
+    }
+
+    // Header scroll shadow
+    const header = document.getElementById('header');
+    if (header) {
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 10) {
+          header.classList.add('header--scrolled');
+        } else {
+          header.classList.remove('header--scrolled');
+        }
+      }, { passive: true });
+    }
+
+    // Scroll reveal
+    var reveals = document.querySelectorAll('.reveal, .reveal-stagger');
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+      reveals.forEach(function(el) {
+        observer.observe(el);
+      });
+    } else {
+      reveals.forEach(function(el) { el.classList.add('visible'); });
+    }
+
+    // FAQ accordion
+    document.querySelectorAll('.faq__question').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var item = btn.closest('.faq__item');
+        var isOpen = item.classList.contains('open');
+        // Close all
+        document.querySelectorAll('.faq__item').forEach(function(i) {
+          i.classList.remove('open');
+          i.querySelector('.faq__question').setAttribute('aria-expanded', 'false');
+        });
+        // Toggle clicked
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  })();
+  </script>
 </body>
 </html>
