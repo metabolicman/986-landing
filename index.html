@@ -778,6 +778,140 @@ a, button {
 }
 
 /* ============================================
+   COMPARISON TABLE
+   ============================================ */
+.compare {
+  background: var(--sand);
+}
+
+.compare__header {
+  text-align: center;
+  margin-bottom: clamp(var(--space-10), 4vw, var(--space-16));
+}
+
+.compare__header h2 {
+  font-size: var(--text-xl);
+  color: var(--navy);
+  margin-bottom: var(--space-4);
+}
+
+.compare__header p {
+  color: var(--body-grey);
+  max-width: 50ch;
+  margin-inline: auto;
+}
+
+.compare__scroll {
+  position: relative;
+}
+
+.compare__table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+}
+
+.compare__hint {
+  display: none;
+  text-align: center;
+  font-size: var(--text-xs);
+  color: var(--muted-brown);
+  margin-bottom: var(--space-3);
+  animation: nudge 1.8s ease-in-out infinite;
+}
+
+@keyframes nudge {
+  0%, 100% { transform: translateX(0); }
+  30% { transform: translateX(6px); }
+  60% { transform: translateX(-6px); }
+}
+
+@media (max-width: 768px) {
+  .compare__hint {
+    display: block;
+  }
+}
+
+.compare__table {
+  width: 100%;
+  min-width: 820px;
+  border-collapse: collapse;
+  background: var(--off-white);
+  font-size: var(--text-sm);
+}
+
+.compare__table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--navy);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-base);
+  padding: var(--space-5) var(--space-4);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.compare__table thead th:first-child {
+  text-align: left;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
+
+.compare__table tbody td {
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--light-grey);
+  text-align: center;
+  color: var(--body-grey);
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.compare__table tbody td:first-child {
+  font-weight: 600;
+  color: var(--navy);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.compare__table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Highlight 98.6° column */
+.compare__table thead th:nth-child(2) {
+  background: var(--teal);
+  color: #fff;
+}
+
+.compare__table tbody td:nth-child(2) {
+  background: rgba(76, 183, 165, 0.08);
+  color: var(--navy);
+  font-weight: 500;
+}
+
+.compare__table tbody tr:hover td {
+  background: rgba(31, 54, 84, 0.03);
+}
+
+.compare__table tbody tr:hover td:nth-child(2) {
+  background: rgba(76, 183, 165, 0.14);
+}
+
+.compare__disclaimer {
+  margin-top: var(--space-6);
+  font-size: var(--text-xs);
+  color: var(--muted-brown);
+  text-align: center;
+  max-width: 65ch;
+  margin-inline: auto;
+}
+
+/* ============================================
    PRICING
    ============================================ */
 .pricing {
@@ -1319,6 +1453,111 @@ a, button {
           <p>Everything is stored on your device. No cloud accounts, no third-party tracking, no data sales. Export to CSV anytime for your own analysis.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ==================== COMPARISON TABLE ==================== -->
+  <section class="compare section" id="compare">
+    <div class="container">
+      <div class="compare__header reveal">
+        <span class="section-label">How 98.6° Compares</span>
+        <h2>How 98.6° compares</h2>
+        <p>Most health apps weren't built for metabolism. 98.6° was.</p>
+      </div>
+
+      <div class="compare__scroll reveal">
+        <p class="compare__hint">← Swipe to see all columns →</p>
+        <div class="compare__table-wrap">
+          <table class="compare__table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>98.6°</th>
+                <th>Levels</th>
+                <th>Lumen</th>
+                <th>Oura Ring</th>
+                <th>Bearable</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Price</td>
+                <td>$59.99 once</td>
+                <td>$288–$1,499/yr</td>
+                <td>$219–$439 device + membership</td>
+                <td>$349–$499 + $5.99/mo</td>
+                <td>Free / $34.99/yr premium</td>
+              </tr>
+              <tr>
+                <td>Subscription required</td>
+                <td>No</td>
+                <td>Yes, billed annually</td>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td>Yes for full features</td>
+              </tr>
+              <tr>
+                <td>Hardware needed</td>
+                <td>Basic thermometer</td>
+                <td>CGM sensor</td>
+                <td>Lumen breath device</td>
+                <td>Oura Ring</td>
+                <td>None</td>
+              </tr>
+              <tr>
+                <td>Tracks temp + pulse together</td>
+                <td>✅ Multi-point daily</td>
+                <td>❌ Glucose only</td>
+                <td>❌ Breath CO₂ only</td>
+                <td>Overnight temp deviation only (no absolute °F)</td>
+                <td>Manual entry only</td>
+              </tr>
+              <tr>
+                <td>Metabolic ranges</td>
+                <td>✅ Barnes-style zones</td>
+                <td>❌</td>
+                <td>❌</td>
+                <td>❌</td>
+                <td>❌</td>
+              </tr>
+              <tr>
+                <td>Research library</td>
+                <td>✅ 120+ studies</td>
+                <td>❌</td>
+                <td>❌</td>
+                <td>❌</td>
+                <td>❌</td>
+              </tr>
+              <tr>
+                <td>Doctor-ready reports</td>
+                <td>✅ One-tap PDF</td>
+                <td>❌</td>
+                <td>❌</td>
+                <td>❌</td>
+                <td>CSV export only</td>
+              </tr>
+              <tr>
+                <td>Cycle tracking</td>
+                <td>✅ Tags + trends</td>
+                <td>❌</td>
+                <td>❌</td>
+                <td>✅ (via Natural Cycles)</td>
+                <td>✅</td>
+              </tr>
+              <tr>
+                <td>Data ownership</td>
+                <td>100% local, you own it</td>
+                <td>Cloud-based</td>
+                <td>Cloud-based</td>
+                <td>Cloud + subscription required</td>
+                <td>Cloud-based</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <p class="compare__disclaimer">Competitor information based on publicly available pricing and features as of March 2026. All trademarks belong to their respective owners.</p>
     </div>
   </section>
 
