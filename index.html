@@ -435,7 +435,7 @@ a, button {
   gap: var(--space-8);
   color: var(--muted-brown);
   font-size: var(--text-sm);
-  margin-bottom: var(--space-12);
+  margin-bottom: var(--space-4);
 }
 
 .hero__proof span {
@@ -448,6 +448,16 @@ a, button {
   .hero__proof {
     gap: 0.5rem;
   }
+}
+
+.hero__proof-note {
+  text-align: center;
+  font-size: var(--text-xs);
+  color: var(--muted-brown);
+  max-width: 48ch;
+  margin-inline: auto;
+  margin-bottom: var(--space-12);
+  line-height: 1.6;
 }
 
 .hero__image-wrap {
@@ -643,6 +653,73 @@ a, button {
 .temp-bar__fill--mid { background: var(--teal); width: 72%; }
 .temp-bar__fill--good { background: var(--teal); width: 90%; }
 .temp-bar__fill--high { background: var(--coral); width: 60%; }
+
+/* ============================================
+   WHY TEMP & PULSE MATTER (SCIENCE)
+   ============================================ */
+.science {
+  background: var(--off-white);
+}
+
+.science__header {
+  text-align: center;
+  margin-bottom: clamp(var(--space-10), 4vw, var(--space-16));
+}
+
+.science__header h2 {
+  font-size: var(--text-xl);
+  color: var(--navy);
+  margin-bottom: var(--space-4);
+}
+
+.science__header p {
+  color: var(--body-grey);
+  max-width: 58ch;
+  margin-inline: auto;
+  line-height: 1.7;
+}
+
+.science__columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-8);
+  margin-bottom: clamp(var(--space-10), 4vw, var(--space-16));
+}
+
+@media (max-width: 768px) {
+  .science__columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+.science__col {
+  background: var(--sand);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+}
+
+.science__col h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: var(--navy);
+  margin-bottom: var(--space-4);
+}
+
+.science__col p {
+  color: var(--body-grey);
+  line-height: 1.7;
+}
+
+.science__trust {
+  text-align: center;
+  max-width: 62ch;
+  margin-inline: auto;
+  color: var(--body-grey);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--light-grey);
+}
 
 /* ============================================
    HOW IT WORKS
@@ -1456,7 +1533,7 @@ a, button {
       <div class="hero__proof">
         <span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
-          200+ peer-reviewed studies
+          260+ peer-reviewed studies
         </span>
         <span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
@@ -1467,6 +1544,8 @@ a, button {
           Doctor-ready reports
         </span>
       </div>
+
+      <p class="hero__proof-note">Including dedicated sections showing how recent research validates key ideas from Dr. Broda Barnes and Dr. Ray Peat about temperature, pulse, and oxidative metabolism.</p>
 
       <div class="hero__image-wrap reveal">
         <img src="./assets/hero-coastal.png" alt="Watercolor coastal scene of Monterey Bay at dawn, setting the calm tone of the 98.6° brand" width="900" height="506" loading="eager">
@@ -1512,9 +1591,9 @@ a, button {
         <div class="metabolism__text reveal">
           <span class="section-label">Understanding Your Body</span>
           <h2>What is your metabolism, really?</h2>
-          <p>Your metabolism is how your body makes energy. When it works well, you feel warm, focused, and steady. When it slows down, you feel cold, tired, and foggy.</p>
-          <p>Two simple numbers tell you a lot: your body temperature and your resting pulse. Together, they paint a picture that a single blood test often misses.</p>
-          <p>Researchers like Dr. Broda Barnes showed decades ago that tracking temperature over time reveals patterns that standard lab work can overlook. 98.6° helps you see those patterns clearly.</p>
+          <p>Your metabolism is how every cell in your body produces energy. Most of that process is driven by thyroid hormones and carried out inside your mitochondria. When it runs well, you feel warm, focused, and steady. When it slows, you feel cold, tired, and foggy.</p>
+          <p>Two simple numbers reflect this process better than most people realize: body temperature and resting pulse. Modern research confirms they are practical markers of thyroid activity, oxygen use, and cardiovascular efficiency—signals that a single blood draw often misses.</p>
+          <p>Decades ago, Dr. Broda Barnes and Dr. Ray Peat argued that daily temperature and pulse patterns reveal metabolic health more reliably than lab panels alone. Today, large cohort studies and mitochondrial research continue to support that perspective. 98.6° helps you track those patterns clearly.</p>
         </div>
 
         <div class="metabolism__visual reveal">
@@ -1542,6 +1621,36 @@ a, button {
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ==================== WHY TEMP & PULSE MATTER ==================== -->
+  <section class="science section" id="science">
+    <div class="container">
+      <div class="science__header reveal">
+        <span class="section-label">The Science</span>
+        <h2>Why temperature and pulse still matter</h2>
+        <p>Decades of clinical work from Dr. Broda Barnes and Dr. Ray Peat are now echoed in modern thyroid and mitochondrial research. 98.6° brings that perspective into a simple daily tracker.</p>
+      </div>
+
+      <div class="science__columns reveal-stagger">
+        <div class="science__col">
+          <h3>Thyroid, warmth, and heart rate</h3>
+          <p>Thyroid hormones set a large part of your body's "idle speed"—the baseline rate at which you burn fuel at rest. Large cohort and animal studies show that changes in thyroid signaling directly shift resting heart rate, core body temperature, and overall energy use through both the cardiovascular system and the hypothalamus. That is why Barnes used morning temperature and pulse as practical, everyday markers of metabolic function.</p>
+        </div>
+
+        <div class="science__col">
+          <h3>Low numbers, slow metabolism</h3>
+          <p>When thyroid signaling runs low, research now links that pattern to colder baseline body temperatures, a slower resting pulse, reduced oxygen consumption, and higher long-term cardiovascular risk. These signals often appear well before lab panels move outside a "normal" range—which is exactly why Barnes watched morning temperature and pulse instead of relying only on standard bloodwork.</p>
+        </div>
+
+        <div class="science__col">
+          <h3>Mitochondria, stress, and energy</h3>
+          <p>Peat's focus on oxidative metabolism and stress hormones is now reflected in newer mitochondrial research, which ties sluggish, glycolysis-heavy metabolism to fatigue, brain fog, and metabolic disease. Temperature and pulse remain cheap, practical windows into whether your system is running in an energy-rich oxidative mode or a stress-driven, less efficient one.</p>
+        </div>
+      </div>
+
+      <p class="science__trust reveal">The 98.6° library now links 260+ modern papers to classic ideas from Dr. Broda Barnes and Dr. Ray Peat, so you’re not just following a theory—you’re looking at signals that current research still takes seriously.</p>
     </div>
   </section>
 
@@ -1615,7 +1724,7 @@ a, button {
         <div class="feature-card">
           <div class="feature-card__icon">📚</div>
           <h3>Research Library</h3>
-          <p>21 compounds explained in plain language. Each entry includes what it is, how it works, research findings, food sources, and important cautions. Built on 200+ peer-reviewed studies.</p>
+          <p>21 compounds explained in plain language. Each entry includes what it is, how it works, research findings, food sources, and important cautions. Built on 260+ peer-reviewed studies.</p>
         </div>
 
         <div class="feature-card">
@@ -1705,7 +1814,7 @@ a, button {
               </tr>
               <tr>
                 <td>Research library</td>
-                <td>✅ 200+ studies</td>
+                <td>✅ 260+ studies</td>
                 <td>❌</td>
                 <td>❌</td>
                 <td>❌</td>
@@ -1762,7 +1871,7 @@ a, button {
         <ul class="pricing-card__list">
           <li>Multi-point daily temperature and pulse tracker</li>
           <li>5-second Quick Add from any screen</li>
-          <li>Research Library with 21 compounds and 200+ studies</li>
+          <li>Research Library with 21 compounds and 260+ studies</li>
           <li>Charts and trend views (7, 30, 60, 90 days)</li>
           <li>Doctor-ready PDF reports</li>
           <li>Supplement log and CSV export</li>
@@ -2042,7 +2151,7 @@ a, button {
           '<p class="research-demo__card-summary">' + c.summary + '</p>' +
           '<p class="research-demo__card-label">How it may relate to metabolism</p>' +
           '<ul>' + bullets + '</ul>' +
-          '<p class="research-demo__card-footer">Backed by 200+ peer-reviewed studies in the full library.</p>' +
+          '<p class="research-demo__card-footer">Backed by 260+ peer-reviewed studies in the full library.</p>' +
         '</div>';
       cta.style.display = 'block';
       pills.forEach(function(p) {
