@@ -445,8 +445,20 @@ a, button {
 }
 
 @media (max-width: 768px) {
+  .hero__actions {
+    margin-bottom: var(--space-5);
+  }
+
   .hero__proof {
     gap: 0.5rem;
+    margin-bottom: var(--space-3);
+  }
+
+  .hero__proof-note {
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-8);
+    font-size: clamp(0.7rem, 0.65rem + 0.2vw, 0.8rem);
+    color: #b3a898;
   }
 }
 
