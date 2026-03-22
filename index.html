@@ -21,7 +21,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>98.6° — Track Your Metabolism with Temperature and Pulse</title>
-<meta name="description" content="98.6° helps you track daily temperature and pulse, spot metabolic patterns, and export doctor-ready reports. One-time purchase. No subscriptions. No ads.">
+<meta name="description" content="98.6° tracks temperature and pulse across 5 daily slots, detects 13 metabolic patterns, and connects every reading to 271 peer-reviewed studies. Doctor-ready reports. 100% private. One-time purchase.">
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png">
 <link rel="apple-touch-icon" href="/favicon.png">
@@ -644,10 +644,11 @@ a, button {
   transition: width 800ms var(--ease);
 }
 
-.temp-bar__fill--low { background: #a3c4d9; width: 45%; }
-.temp-bar__fill--mid { background: var(--teal); width: 72%; }
+.temp-bar__fill--low { background: #a3c4d9; width: 40%; }
+.temp-bar__fill--mid { background: var(--teal); width: 60%; }
+.temp-bar__fill--mid-high { background: var(--teal); width: 75%; }
 .temp-bar__fill--good { background: var(--teal); width: 90%; }
-.temp-bar__fill--high { background: var(--coral); width: 60%; }
+.temp-bar__fill--high { background: var(--coral); width: 55%; }
 
 /* ============================================
    WHY TEMP & PULSE MATTER (SCIENCE)
@@ -724,6 +725,54 @@ a, button {
   font-size: var(--text-xs);
   line-height: 1.7;
   margin-top: var(--space-3);
+}
+
+/* ============================================
+   FEATURE CHECKLIST
+   ============================================ */
+.feature-checklist {
+  background: var(--sand);
+}
+
+.feature-checklist__header {
+  text-align: center;
+  margin-bottom: var(--space-10);
+}
+
+.feature-checklist__header p {
+  margin-inline: auto;
+}
+
+.feature-checklist__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3) var(--space-10);
+  max-width: 820px;
+  margin-inline: auto;
+}
+
+.feature-checklist__item {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--body-grey);
+  line-height: 1.6;
+}
+
+.feature-checklist__item::before {
+  content: '✓';
+  flex-shrink: 0;
+  color: var(--teal);
+  font-weight: 600;
+  font-size: 1em;
+}
+
+@media (max-width: 640px) {
+  .feature-checklist__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+  }
 }
 
 /* ============================================
@@ -1528,7 +1577,7 @@ a, button {
 
       <h1>Finally see what your metabolism is telling you</h1>
 
-      <p class="hero__sub">Track your temperature and pulse every day. Spot patterns your doctor can't see in a single blood draw. Bring real data to your next visit.</p>
+      <p class="hero__sub">Track temperature and pulse across five daily slots. Detect 13 metabolic patterns. Access 271 peer-reviewed studies. Generate doctor-ready reports. All private. All on your device.</p>
 
       <div class="hero__actions">
         <a href="#pricing" class="btn btn--primary">Get 98.6° for $59.99</a>
@@ -1538,7 +1587,7 @@ a, button {
       <div class="hero__proof">
         <span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
-          260+ peer-reviewed studies
+          271 peer-reviewed studies
         </span>
         <span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
@@ -1609,8 +1658,12 @@ a, button {
                 <div class="temp-bar__track"><div class="temp-bar__fill temp-bar__fill--low"></div></div>
               </div>
               <div class="temp-bar">
-                <span class="temp-bar__label">Morning</span>
+                <span class="temp-bar__label">Mid-Morning</span>
                 <div class="temp-bar__track"><div class="temp-bar__fill temp-bar__fill--mid"></div></div>
+              </div>
+              <div class="temp-bar">
+                <span class="temp-bar__label">Post-Breakfast</span>
+                <div class="temp-bar__track"><div class="temp-bar__fill temp-bar__fill--mid-high"></div></div>
               </div>
               <div class="temp-bar">
                 <span class="temp-bar__label">Afternoon</span>
@@ -1653,8 +1706,8 @@ a, button {
         </div>
       </div>
 
-      <p class="science__trust reveal">260+ modern papers linked to classic ideas from Dr. Barnes and Dr. Peat—signals that current research still takes seriously.</p>
-      <p class="science__trust--sub reveal">You’ll also find dedicated sections connecting classic work from Dr. Broda Barnes and Dr. Ray Peat with 260+ modern studies on temperature, pulse, and metabolism.</p>
+      <p class="science__trust reveal">Built on 271 peer-reviewed studies across 24 research entries, including dedicated Barnes, Peat, and Menstrual Cycle foundations.</p>
+      <p class="science__trust--sub reveal">Three foundation entries ground the app’s methodology: Dr. Broda Barnes on basal temperature, Dr. Ray Peat on bioenergetics, and a dedicated Menstrual Cycle & BBT reference.</p>
     </div>
   </section>
 
@@ -1671,31 +1724,32 @@ a, button {
         <div class="step">
           <div class="step__number">01</div>
           <h3>Log your reading</h3>
-          <p>Tap the quick-add button. Enter your temperature and pulse. The app picks the right time slot for you. Done in under five seconds.</p>
+          <p>Tap QuickAdd. Enter temperature and pulse across five daily slots. Tag from 131 options across 19 categories. Done in seconds.</p>
           <div class="step__icon-row">
             <span class="step__tag">Temperature</span>
             <span class="step__tag">Pulse</span>
-            <span class="step__tag">Tags</span>
+            <span class="step__tag">131 Tags</span>
           </div>
         </div>
 
         <div class="step">
           <div class="step__number">02</div>
           <h3>See your patterns</h3>
-          <p>Watch your trends over 7, 30, 60, or 90 days. Filter by time of day. See how food, sleep, and stress connect to your numbers.</p>
+          <p>The app detects 13 metabolic patterns automatically. Track cycle phases, supplement effects, and time-of-day curves over 7 to 90 days.</p>
           <div class="step__icon-row">
-            <span class="step__tag">Charts</span>
+            <span class="step__tag">13 Patterns</span>
             <span class="step__tag">Trends</span>
-            <span class="step__tag">Filters</span>
+            <span class="step__tag">Correlations</span>
           </div>
         </div>
 
         <div class="step">
           <div class="step__number">03</div>
           <h3>Share with your doctor</h3>
-          <p>Generate a clean, professional "Metabolic Vitals Summary" PDF. Bring real data to your next appointment. No more guessing.</p>
+          <p>Generate a Doctor Visit Report or Standard Report as a formatted PDF. Export raw data as CSV. Bring structured evidence to your next visit.</p>
           <div class="step__icon-row">
-            <span class="step__tag">PDF Report</span>
+            <span class="step__tag">Doctor Report</span>
+            <span class="step__tag">Standard Report</span>
             <span class="step__tag">CSV Export</span>
           </div>
         </div>
@@ -1715,38 +1769,44 @@ a, button {
       <div class="features-grid reveal-stagger">
         <div class="feature-card">
           <div class="feature-card__icon">📊</div>
-          <h3>Multi-Point Daily Tracker</h3>
-          <p>Log temperature and pulse across five time slots. Add tags for food, sleep, stress, symptoms, and supplements. Build a picture only daily tracking can reveal.</p>
+          <h3>Daily Tracking</h3>
+          <p>Log temperature and pulse across 5 daily slots (Waking through Evening). Choose oral or axillary method. Tag entries from 131 structured options across 19 categories. QuickAdd gets it done in seconds.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-card__icon">⚡</div>
-          <h3>5-Second Quick Add</h3>
-          <p>A floating button on every screen. One tap opens a slide-up form. Your time slot is already picked. Enter your numbers and save. That's it.</p>
+          <h3>Pattern Intelligence</h3>
+          <p>13 automatic pattern detections — from sustained low temperature to post-meal drops to supplement shifts. Plus a Metabolic Summary card, Tag Correlations, and a Time-of-Day curve.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card__icon">🌙</div>
+          <h3>Menstrual Cycle Integration</h3>
+          <p>Track 5 cycle phases alongside every reading. 4 cycle-specific pattern detections show how temperature and pulse shift across Menstruation, Follicular, Ovulation, and Luteal phases.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card__icon">💊</div>
+          <h3>Supplement &amp; Medication Analysis</h3>
+          <p>Log supplements with dose, frequency, and dates. The app automatically compares your 14-day averages before and after — surfacing measurable temperature and pulse shifts.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-card__icon">📚</div>
-          <h3>Research Library</h3>
-          <p>21 compounds explained in plain language. Each entry includes what it is, how it works, research findings, food sources, and important cautions. Built on 260+ peer-reviewed studies.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-card__icon">📈</div>
-          <h3>Charts &amp; Trend Views</h3>
-          <p>See your data as clear line charts over 7 to 90 days. Filter by time slot. Background bands show the ranges that researchers look for.</p>
+          <h3>Research Library &amp; AI Search</h3>
+          <p>271 peer-reviewed studies across 24 entries — 21 compounds plus Barnes, Peat, and Menstrual Cycle foundations. Use "Ask 98.6°" to search the library in plain English.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-card__icon">🩺</div>
           <h3>Doctor-Ready Reports</h3>
-          <p>One-tap PDF export with averages, trend lines, and clinical reference ranges. Labeled clearly as self-reported data. Made for real conversations with your provider.</p>
+          <p>Generate a Doctor Visit Report or Standard Report as a formatted PDF. Includes cycle phase summaries, supplement logs, and clinical reference ranges. Plus CSV export.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-card__icon">🔒</div>
-          <h3>Your Data Stays Yours</h3>
-          <p>Everything is stored on your device. No cloud accounts, no third-party tracking, no data sales. Export to CSV anytime for your own analysis.</p>
+          <h3>100% Private &amp; Offline</h3>
+          <p>Progressive web app with no accounts and no cloud. All data stays on your device. Works offline after first load. Install from any browser on iOS, Android, or desktop.</p>
         </div>
       </div>
     </div>
@@ -1818,7 +1878,7 @@ a, button {
               </tr>
               <tr>
                 <td>Research library</td>
-                <td>✅ 260+ studies</td>
+                <td>✅ 271 studies, 24 entries</td>
                 <td>❌</td>
                 <td>❌</td>
                 <td>❌</td>
@@ -1834,7 +1894,7 @@ a, button {
               </tr>
               <tr>
                 <td>Cycle tracking</td>
-                <td>✅ Tags + trends</td>
+                <td>✅ 5 phases + 4 pattern detections</td>
                 <td>❌</td>
                 <td>❌</td>
                 <td>✅ (via Natural Cycles)</td>
@@ -1873,14 +1933,15 @@ a, button {
         <div class="pricing-card__divider"></div>
 
         <ul class="pricing-card__list">
-          <li>Multi-point daily temperature and pulse tracker</li>
-          <li>5-second Quick Add from any screen</li>
-          <li>Research Library with 21 compounds and 260+ studies</li>
-          <li>Charts and trend views (7, 30, 60, 90 days)</li>
-          <li>Doctor-ready PDF reports</li>
-          <li>Supplement log and CSV export</li>
+          <li>5 daily time slots with 131 structured tags</li>
+          <li>13 automatic pattern detections</li>
+          <li>Menstrual cycle tracking across 5 phases</li>
+          <li>Supplement log with before/after analysis</li>
+          <li>271 studies across 24 research library entries</li>
+          <li>AI-powered "Ask 98.6°" research assistant</li>
+          <li>Doctor Visit Report + Standard Report + CSV</li>
+          <li>100% local PWA — no accounts, offline capable</li>
           <li>All future updates included</li>
-          <li>No ads, no tracking, no data sales</li>
         </ul>
 
         <a href="#" class="btn btn--primary">Get 98.6° Now</a>
@@ -1892,13 +1953,41 @@ a, button {
     </div>
   </section>
 
+  <!-- ==================== FEATURE CHECKLIST ==================== -->
+  <section class="feature-checklist section" id="feature-list">
+    <div class="container">
+      <div class="feature-checklist__header reveal">
+        <span class="section-label">Everything Included</span>
+        <h2>The full feature list</h2>
+        <p>One purchase. Every feature. No tiers, no upsells.</p>
+      </div>
+
+      <div class="feature-checklist__grid reveal">
+        <span class="feature-checklist__item">5 daily time slots (Waking through Evening)</span>
+        <span class="feature-checklist__item">131 structured tags across 19 categories</span>
+        <span class="feature-checklist__item">13 automatic pattern detections</span>
+        <span class="feature-checklist__item">Menstrual cycle tracking across 5 phases</span>
+        <span class="feature-checklist__item">4 cycle-specific pattern detections</span>
+        <span class="feature-checklist__item">Supplement before/after analysis</span>
+        <span class="feature-checklist__item">271 peer-reviewed studies with DOI links</span>
+        <span class="feature-checklist__item">24 research entries (21 compounds + 3 foundations)</span>
+        <span class="feature-checklist__item">AI research assistant ("Ask 98.6°")</span>
+        <span class="feature-checklist__item">Doctor Visit Report formatted for providers</span>
+        <span class="feature-checklist__item">Standard Report + CSV data export</span>
+        <span class="feature-checklist__item">PWA — offline capable, installs from any browser</span>
+        <span class="feature-checklist__item">100% local storage — no accounts, no cloud</span>
+        <span class="feature-checklist__item">Works on iOS, Android, and desktop</span>
+      </div>
+    </div>
+  </section>
+
   <!-- ==================== RESEARCH DEMO ==================== -->
   <section class="research-demo section" id="research-demo">
     <div class="container">
       <div class="research-demo__header reveal">
         <span class="section-label">Preview</span>
         <h2>Try the research library</h2>
-        <p>Search a small sample of the 98.6° research library. Look up a few compounds and see how we explain the science in plain language.</p>
+        <p>Search a small sample of the 271-study research library. Look up a few compounds and see how we explain the science in plain language.</p>
       </div>
 
       <div class="research-demo__ui reveal">
@@ -1978,7 +2067,7 @@ a, button {
             <svg class="faq__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </button>
           <div class="faq__answer">
-            <p>A curated collection of 21 compounds (vitamins, minerals, amino acids, and more) that research connects to metabolic health. Each entry explains what it is, how it works, key studies, food sources, and important cautions. All written in plain language you can actually read.</p>
+            <p>271 peer-reviewed studies organized across 24 entries: 21 compounds (vitamins, minerals, amino acids, and more) plus 3 foundation entries covering Barnes, Peat, and Menstrual Cycle research. Each entry includes key studies, food sources, and cautions. Plus an AI-powered search tool to explore the library in plain English.</p>
           </div>
         </div>
 
@@ -2155,7 +2244,7 @@ a, button {
           '<p class="research-demo__card-summary">' + c.summary + '</p>' +
           '<p class="research-demo__card-label">How it may relate to metabolism</p>' +
           '<ul>' + bullets + '</ul>' +
-          '<p class="research-demo__card-footer">Backed by 260+ peer-reviewed studies in the full library.</p>' +
+          '<p class="research-demo__card-footer">Backed by 271 peer-reviewed studies in the full library.</p>' +
         '</div>';
       cta.style.display = 'block';
       pills.forEach(function(p) {
