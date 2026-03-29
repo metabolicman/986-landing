@@ -339,15 +339,22 @@ a, button {
 .hero {
   position: relative;
   overflow: hidden;
-  padding-top: clamp(var(--space-16), 10vw, var(--space-32));
-  padding-bottom: clamp(var(--space-12), 6vw, var(--space-24));
+  padding-top: clamp(var(--space-12), 7vw, var(--space-24));
+  padding-bottom: clamp(var(--space-12), 6vw, var(--space-20));
   background: linear-gradient(175deg, var(--off-white) 0%, var(--sand) 50%, var(--sage) 100%);
 }
 
 .hero__content {
   position: relative;
   z-index: 2;
-  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(var(--space-8), 4vw, var(--space-16));
+  align-items: center;
+}
+
+.hero__copy {
+  text-align: left;
 }
 
 .hero__badge {
@@ -368,28 +375,26 @@ a, button {
   font-size: var(--text-2xl);
   font-weight: 700;
   color: var(--navy);
-  max-width: 18ch;
-  margin-inline: auto;
+  max-width: 20ch;
   margin-bottom: var(--space-6);
   letter-spacing: -0.02em;
+  line-height: 1.08;
 }
 
 .hero__sub {
   font-size: var(--text-lg);
   color: var(--body-grey);
-  max-width: 48ch;
-  margin-inline: auto;
+  max-width: 44ch;
   margin-bottom: var(--space-10);
-  line-height: 1.5;
+  line-height: 1.55;
   font-weight: 300;
 }
 
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: var(--space-4);
-  margin-bottom: var(--space-12);
+  margin-bottom: var(--space-10);
 }
 
 .btn {
@@ -431,11 +436,9 @@ a, button {
 .hero__proof {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-8);
+  gap: var(--space-6);
   color: var(--muted-brown);
   font-size: var(--text-sm);
-  margin-bottom: var(--space-12);
 }
 
 .hero__proof span {
@@ -445,28 +448,54 @@ a, button {
 }
 
 @media (max-width: 768px) {
+  .hero__content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero__copy {
+    text-align: center;
+    order: 2;
+  }
+
+  .hero__image-wrap {
+    order: 1;
+    max-width: 340px;
+    margin-inline: auto;
+  }
+
+  .hero h1 {
+    max-width: none;
+    margin-inline: auto;
+  }
+
+  .hero__sub {
+    margin-inline: auto;
+  }
+
   .hero__actions {
+    justify-content: center;
     margin-bottom: var(--space-5);
   }
 
   .hero__proof {
+    justify-content: center;
     gap: 0.5rem;
-    margin-bottom: var(--space-8);
   }
 }
 
 .hero__image-wrap {
   position: relative;
-  max-width: 900px;
-  margin-inline: auto;
-  border-radius: var(--radius-xl);
+  border-radius: 1.25rem;
   overflow: hidden;
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 8px 40px rgba(31, 54, 84, 0.1), 0 2px 12px rgba(31, 54, 84, 0.06);
 }
 
 .hero__image-wrap img {
   width: 100%;
   height: auto;
+  display: block;
+  object-fit: cover;
 }
 
 /* ============================================
@@ -1570,37 +1599,39 @@ a, button {
   <!-- ==================== HERO ==================== -->
   <section class="hero section" id="hero">
     <div class="container hero__content">
-      <span class="hero__badge">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v8m0 0l-2-2m2 2l2-2M5 12a7 7 0 0014 0"/></svg>
-        One-time purchase. Lifetime access.
-      </span>
+      <div class="hero__copy">
+        <span class="hero__badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v8m0 0l-2-2m2 2l2-2M5 12a7 7 0 0014 0"/></svg>
+          One-time purchase. Lifetime access.
+        </span>
 
-      <h1>Your metabolism has been talking. You just couldn’t hear it.</h1>
+        <h1>Finally see what your metabolism is trying to tell you</h1>
 
-      <p class="hero__sub">A blood test is a snapshot. This is the whole picture. Track your temperature and pulse, see the patterns, and walk into your next appointment with something real.</p>
+        <p class="hero__sub">You feel off, your labs say you’re fine, and nobody can explain the fatigue, brain fog, or cold hands. 98.6° tracks your temperature and pulse daily, spots the patterns blood tests miss, and gives you a report your doctor can actually use.</p>
 
-      <div class="hero__actions">
-        <a href="#pricing" class="btn btn--primary">Get 98.6° for $59.99</a>
-        <a href="#how-works" class="btn btn--outline">See how it works</a>
+        <div class="hero__actions">
+          <a href="#pricing" class="btn btn--primary">Get 98.6° for $59.99</a>
+          <a href="#how-works" class="btn btn--outline">See how it works</a>
+        </div>
+
+        <div class="hero__proof">
+          <span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+            Backed by 271 studies
+          </span>
+          <span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+            $59.99 once, no subscriptions
+          </span>
+          <span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+            Doctor-ready reports
+          </span>
+        </div>
       </div>
 
-      <div class="hero__proof">
-        <span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
-          271 peer-reviewed studies
-        </span>
-        <span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
-          No subscriptions, ever
-        </span>
-        <span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
-          Doctor-ready reports
-        </span>
-      </div>
-
-      <div class="hero__image-wrap reveal">
-        <img src="./assets/hero-coastal.png" alt="Watercolor coastal scene of Monterey Bay at dawn, setting the calm tone of the 98.6° brand" width="900" height="506" loading="eager">
+      <div class="hero__image-wrap">
+        <img src="./assets/hero-lifestyle.jpg" alt="Woman checking the 98.6° app on her phone, relaxing on a couch with a coastal view" width="800" height="1000" loading="eager">
       </div>
     </div>
   </section>
@@ -1610,27 +1641,27 @@ a, button {
     <div class="container">
       <div class="who-for__header reveal">
         <span class="section-label">Who This Is For</span>
-        <h2>Something is off. Your labs keep saying “normal.”</h2>
-        <p>Cold hands, brain fog, fatigue. These aren’t in your head. 98.6° gives you numbers that match what you already feel. And a report your doctor can actually use.</p>
+        <h2>You know something is wrong. Your labs keep saying “normal.”</h2>
+        <p>Cold hands, brain fog, fatigue that won’t lift. You’re not imagining it. 98.6° gives you real numbers that match what you already feel, and a report your doctor can actually work with.</p>
       </div>
 
       <div class="who-for__grid reveal-stagger">
         <div class="persona-card">
           <div class="persona-card__icon">🌡️</div>
-          <h3>Tired of “Your labs look fine”</h3>
-          <p>Every test comes back normal, but you feel terrible. A single blood draw misses things that 98.6° catches. You walk in with patterns, not complaints.</p>
+          <h3>Tired of hearing “Your labs look fine”</h3>
+          <p>Every test comes back normal, but you feel terrible. Blood draws miss the slow shifts that happen day to day. 98.6° catches them, so you walk in with patterns instead of complaints.</p>
         </div>
 
         <div class="persona-card">
           <div class="persona-card__icon">📓</div>
-          <h3>Done juggling spreadsheets</h3>
-          <p>Notes app, Google Sheets, a notebook you lost. Your data is everywhere and nowhere. 98.6° puts it all in one place so you can actually see what’s changing.</p>
+          <h3>Scattered notes, lost notebooks</h3>
+          <p>Your data is scattered across apps, notebooks, and spreadsheets you can barely find. 98.6° puts everything in one place so you can actually see what’s changing over time.</p>
         </div>
 
         <div class="persona-card">
           <div class="persona-card__icon">🔬</div>
           <h3>Deep in the research already</h3>
-          <p>You’ve read Barnes and Peat, and you know temperature and pulse matter. Now you need a tool that actually tracks them, with the studies right next to your data.</p>
+          <p>You’ve read Barnes and Peat. You already know temperature and pulse matter. What you need now is a tool that actually tracks them, with 271 studies sitting right next to your data.</p>
         </div>
       </div>
     </div>
@@ -1642,10 +1673,10 @@ a, button {
       <div class="metabolism__inner">
         <div class="metabolism__text reveal">
           <span class="section-label">Understanding Your Body</span>
-          <h2>You already know when something’s off</h2>
-          <p>When your metabolism is working, you feel warm, sharp, steady. When it slows down, you feel cold, foggy, drained. You already know this. You just haven’t had a way to measure it.</p>
-          <p>Temperature and resting pulse are the simplest clues you have. They reveal patterns a blood test misses.</p>
-          <p>Broda Barnes and Ray Peat used daily temperature and pulse to catch slowdowns years before labs ever would. 98.6° puts that same approach on your phone.</p>
+          <h2>Your body already tells you when something’s off</h2>
+          <p>When your metabolism is running well, you feel warm, sharp, and steady. When it slows down, you feel cold, foggy, and drained. You already recognize the difference. You just haven’t had a simple way to measure it.</p>
+          <p>Temperature and resting pulse are the most basic metabolic signals your body produces. They reveal patterns that a single blood draw will almost always miss.</p>
+          <p>Dr. Broda Barnes and Ray Peat spent decades studying how daily temperature and pulse readings catch metabolic slowdowns years before lab panels do. 98.6° puts that same approach in your pocket.</p>
         </div>
 
         <div class="metabolism__visual reveal">
@@ -1685,14 +1716,14 @@ a, button {
     <div class="container">
       <div class="science__header reveal">
         <span class="section-label">The Science</span>
-        <h2>This isn’t new science. It’s forgotten science.</h2>
-        <p>Doctors used temperature and pulse to read metabolism for decades. Then the field moved on to expensive labs and wearables. But the research never stopped backing the basics.</p>
+        <h2>This isn’t new science. It’s science the field left behind.</h2>
+        <p>For decades, doctors read metabolism through temperature and pulse. Then the field moved on to expensive labs and wearable devices. The research never stopped backing the basics, though. It just got buried.</p>
       </div>
 
       <div class="science__columns reveal-stagger">
         <div class="science__col">
           <h3>Your labs say normal. You feel awful.</h3>
-          <p>The hormones on your lab panel also control your body heat and heart rate. When they drop, you feel it, even when the numbers technically look fine.</p>
+          <p>The same hormones on your lab panel also control your body heat and heart rate. When they drop, you feel cold, tired, and foggy, even when the numbers technically look fine.</p>
         </div>
 
         <div class="science__col">
@@ -1702,11 +1733,11 @@ a, button {
 
         <div class="science__col">
           <h3>Stress has a temperature. It’s low.</h3>
-          <p>When your body runs on stress instead of real energy, you feel it. Tired. Foggy. Cold. Tracking your numbers shows you exactly what’s going on.</p>
+          <p>When your body runs on stress hormones instead of real energy production, you feel the difference clearly. Tracking your numbers over time shows you exactly what’s happening.</p>
         </div>
       </div>
 
-      <p class="science__trust reveal">271 published studies across 24 topics, with dedicated sections on Barnes, Peat, and the menstrual cycle.</p>
+      <p class="science__trust reveal">271 published studies across 24 topics. Dedicated sections on Barnes, Peat, and how temperature shifts across the menstrual cycle.</p>
       <p class="science__trust--sub reveal">Three foundation sections explain the science behind the app: Dr. Barnes on temperature testing, Dr. Peat on energy and metabolism, and a guide to temperature changes across the menstrual cycle.</p>
     </div>
   </section>
@@ -1716,15 +1747,15 @@ a, button {
     <div class="container">
       <div class="how-works__header reveal">
         <span class="section-label">How It Works</span>
-        <h2>You’ll see patterns within a week</h2>
-        <p>No complicated setup, no hardware to buy. Just a thermometer you already own and five seconds a day.</p>
+        <h2>See your first patterns within a week</h2>
+        <p>No special hardware, no complicated setup. Just a thermometer you probably already own and five seconds of your morning.</p>
       </div>
 
       <div class="steps reveal-stagger">
         <div class="step">
           <div class="step__number">01</div>
           <h3>Log your reading</h3>
-          <p>Tap QuickAdd, enter your temperature and pulse, then tag what you ate, how you slept, and how you feel. Five seconds and you’re done.</p>
+          <p>Open the app, tap QuickAdd, and enter your temperature and pulse. Tag what you ate, how you slept, and how you’re feeling. The whole thing takes five seconds.</p>
           <div class="step__icon-row">
             <span class="step__tag">Temperature</span>
             <span class="step__tag">Pulse</span>
@@ -1735,7 +1766,7 @@ a, button {
         <div class="step">
           <div class="step__number">02</div>
           <h3>See your patterns</h3>
-          <p>The app watches for 13 patterns. Cycle shifts, supplement effects, post-meal drops, time-of-day changes. It shows you what’s moving and when.</p>
+          <p>The app watches for 13 specific patterns across your data: cycle shifts, supplement effects, post-meal drops, and time-of-day changes. It surfaces what’s moving and when, so you don’t have to guess.</p>
           <div class="step__icon-row">
             <span class="step__tag">13 Patterns</span>
             <span class="step__tag">Trends</span>
@@ -1746,7 +1777,7 @@ a, button {
         <div class="step">
           <div class="step__number">03</div>
           <h3>Walk in prepared</h3>
-          <p>Print a Doctor Visit Report that your provider can read at a glance. You’re not guessing anymore, you’re showing trends.</p>
+          <p>Generate a Doctor Visit Report your provider can read in two minutes. You’re not describing vague symptoms anymore. You’re showing real trends backed by daily data.</p>
           <div class="step__icon-row">
             <span class="step__tag">Doctor Report</span>
             <span class="step__tag">Standard Report</span>
@@ -1762,51 +1793,51 @@ a, button {
     <div class="container">
       <div class="reveal">
         <span class="section-label" style="color: var(--teal);">What's Inside</span>
-        <h2>What’s actually in the app</h2>
-        <p class="whats-inside__subtitle">No ads. No tracking. No upsells. Just tools that make your numbers mean something.</p>
+        <h2>Everything inside the app</h2>
+        <p class="whats-inside__subtitle">No ads, no tracking, no upsells. Just the tools you need to make your numbers mean something.</p>
       </div>
 
       <div class="features-grid reveal-stagger">
         <div class="feature-card">
           <div class="feature-card__icon">📊</div>
-          <h3>Five check-ins a day. Five seconds each.</h3>
-          <p>Temperature, pulse, then tag what you ate, how you slept, and how you’re feeling. 131 tags across 19 categories, and QuickAdd keeps it fast.</p>
+          <h3>Five daily check-ins, five seconds each</h3>
+          <p>Log your temperature and pulse, then tag what you ate, how you slept, and how you’re feeling. 131 tags across 19 categories. QuickAdd keeps every entry under five seconds.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-card__icon">⚡</div>
-          <h3>13 patterns. Found for you.</h3>
-          <p>Low temperature streaks, post-meal drops, supplement effects. The app spots them automatically so you just look at what changed.</p>
+          <h3>13 patterns the app finds for you</h3>
+          <p>Low temperature streaks, post-meal drops, supplement effects. The app spots them automatically and shows you exactly what changed, so you don’t have to dig through raw numbers.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-card__icon">🌙</div>
-          <h3>Your cycle changes your numbers. See how.</h3>
+          <h3>See how your cycle changes your numbers</h3>
           <p>Log your phase with every reading. The app picks up 4 cycle-specific patterns and shows how your temperature and pulse shift across all 4 phases.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-card__icon">💊</div>
-          <h3>Do your supplements actually work?</h3>
-          <p>Log what you take, how much, and when. The app compares your 14-day averages before and after. You get a real answer.</p>
+          <h3>Find out if your supplements actually work</h3>
+          <p>Log what you take, how much, and when. The app compares your 14-day averages before and after, so you get a real answer instead of a guess.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-card__icon">📚</div>
-          <h3>271 studies. Plain English.</h3>
-          <p>24 topics cover the science behind what you’re seeing. Wondering about a supplement? Type it into “Ask 98.6°” and get pointed straight to the research.</p>
+          <h3>271 studies, translated into plain English</h3>
+          <p>Every topic in the library covers the research behind what you’re tracking. Wondering about a specific supplement? Type it into “Ask 98.6°” and get pointed straight to the relevant studies.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-card__icon">🩺</div>
-          <h3>Give your doctor something to work with</h3>
-          <p>One tap, clean PDF. Your trends, cycle data, supplement logs, and reference ranges. Your doctor reads it in two minutes, and the conversation gets a lot better.</p>
+          <h3>Walk into your appointment with real data</h3>
+          <p>One tap generates a clean PDF with your trends, cycle data, supplement logs, and reference ranges. Your doctor reads it in two minutes, and the conversation changes completely.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-card__icon">🔒</div>
-          <h3>Nobody sees your data. Nobody.</h3>
-          <p>No account, no cloud, nothing leaves your device. Works offline after the first load, and you can install it from any browser on any phone, tablet, or computer.</p>
+          <h3>100% private. No exceptions.</h3>
+          <p>No account, no cloud, nothing leaves your device. It works offline after the first load and installs from any browser on any phone, tablet, or computer. Your data stays yours.</p>
         </div>
       </div>
     </div>
@@ -1817,8 +1848,8 @@ a, button {
     <div class="container">
       <div class="compare__header reveal">
         <span class="section-label">How 98.6° Compares</span>
-        <h2>Other apps track glucose, sleep, or steps</h2>
-        <p>None of them track your metabolism, but 98.6° does.</p>
+        <h2>Other apps track glucose, sleep, or steps. None of them track metabolism.</h2>
+        <p>98.6° is the only app built specifically for temperature and pulse-based metabolic tracking.</p>
       </div>
 
       <div class="compare__scroll reveal">
@@ -1922,8 +1953,8 @@ a, button {
     <div class="container">
       <div class="pricing__header reveal">
         <span class="section-label">Simple Pricing</span>
-        <h2>$59.99. That’s it. Forever.</h2>
-        <p>No subscription, no hidden fees. You pay once and keep everything.</p>
+        <h2>One price. Everything included. Yours forever.</h2>
+        <p>$59.99, one time. No subscription, no hidden fees, no premium tiers. You pay once and keep everything, including all future updates.</p>
       </div>
 
       <div class="pricing-card reveal">
@@ -1933,14 +1964,14 @@ a, button {
         <div class="pricing-card__divider"></div>
 
         <ul class="pricing-card__list">
-          <li>Track 5 times a day with food, sleep, stress, and symptom tags</li>
-          <li>See 13 patterns the app finds for you automatically</li>
+          <li>Log 5 times a day with food, sleep, stress, and symptom tags (131 total)</li>
+          <li>13 patterns the app finds and tracks automatically</li>
           <li>Track your cycle across all 4 phases</li>
-          <li>Find out if a supplement is actually working</li>
+          <li>See if a supplement is actually changing your numbers</li>
           <li>271 studies in plain English across 24 topics</li>
           <li>Search the whole library with “Ask 98.6°”</li>
-          <li>Print reports your doctor can use on the spot</li>
-          <li>100% private, no accounts, no cloud, works offline</li>
+          <li>Generate doctor-ready PDF reports in one tap</li>
+          <li>100% private: no accounts, no cloud, works offline</li>
           <li>All future updates included</li>
         </ul>
 
@@ -1948,7 +1979,7 @@ a, button {
       </div>
 
       <div class="pricing__guarantee reveal">
-        <p><strong>30-day guarantee.</strong> If it doesn’t help, reach out. We’ll make it right.</p>
+        <p><strong>30-day satisfaction guarantee.</strong> If 98.6° doesn’t help you see clearer patterns, reach out and we’ll make it right.</p>
       </div>
     </div>
   </section>
@@ -1958,8 +1989,8 @@ a, button {
     <div class="container">
       <div class="feature-checklist__header reveal">
         <span class="section-label">Everything Included</span>
-        <h2>The full list</h2>
-        <p>One purchase, every feature. No tiers, no upsells.</p>
+        <h2>Everything you get</h2>
+        <p>One purchase unlocks every feature. No tiers, no upsells, no limits.</p>
       </div>
 
       <div class="feature-checklist__grid reveal">
@@ -1986,8 +2017,8 @@ a, button {
     <div class="container">
       <div class="research-demo__header reveal">
         <span class="section-label">Preview</span>
-        <h2>Look something up</h2>
-        <p>Pick a compound. Every entry breaks down the research in plain English so you know what you’re taking and why.</p>
+        <h2>Try the research library</h2>
+        <p>Pick a compound and see how the library works. Every entry breaks down the published research in plain English, so you know what you’re taking and why it matters.</p>
       </div>
 
       <div class="research-demo__ui reveal">
@@ -2098,8 +2129,8 @@ a, button {
   <!-- ==================== FINAL CTA ==================== -->
   <section class="final-cta section">
     <div class="container reveal">
-      <h2>Your body has been talking this whole time.</h2>
-      <p>Now you can actually hear it. One purchase, yours forever.</p>
+      <h2>Your body has been sending signals this whole time.</h2>
+      <p>Now you have a way to read them. One purchase, yours forever.</p>
       <a href="#pricing" class="btn btn--primary">Get 98.6° for $59.99</a>
     </div>
   </section>
