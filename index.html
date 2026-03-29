@@ -339,8 +339,8 @@ a, button {
 .hero {
   position: relative;
   overflow: hidden;
-  padding-top: clamp(var(--space-12), 7vw, var(--space-24));
-  padding-bottom: clamp(var(--space-12), 6vw, var(--space-20));
+  padding-top: clamp(1rem, 3vw, 2.5rem);
+  padding-bottom: clamp(1.5rem, 4vw, 3rem);
   background: linear-gradient(175deg, var(--off-white) 0%, var(--sand) 50%, var(--sage) 100%);
 }
 
@@ -348,26 +348,27 @@ a, button {
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(var(--space-8), 4vw, var(--space-16));
-  align-items: center;
+  grid-template-columns: 55% 1fr;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  align-items: start;
 }
 
 .hero__copy {
   text-align: left;
+  padding-top: clamp(0.5rem, 2vw, 1.5rem);
 }
 
 .hero__badge {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  padding: var(--space-2) var(--space-4);
+  padding: 0.3rem 0.75rem;
   background: rgba(76, 183, 165, 0.1);
   border: 1px solid rgba(76, 183, 165, 0.25);
   border-radius: var(--radius-xl);
   font-size: var(--text-sm);
   color: var(--teal-dark);
-  margin-bottom: var(--space-8);
+  margin-bottom: 1rem;
   font-weight: 500;
 }
 
@@ -376,25 +377,25 @@ a, button {
   font-weight: 700;
   color: var(--navy);
   max-width: 20ch;
-  margin-bottom: var(--space-6);
+  margin-bottom: 0.75rem;
   letter-spacing: -0.02em;
   line-height: 1.08;
 }
 
 .hero__sub {
-  font-size: var(--text-lg);
+  font-size: var(--text-base);
   color: var(--body-grey);
   max-width: 44ch;
-  margin-bottom: var(--space-10);
-  line-height: 1.55;
+  margin-bottom: 1.25rem;
+  line-height: 1.6;
   font-weight: 300;
 }
 
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-4);
-  margin-bottom: var(--space-10);
+  gap: var(--space-3);
+  margin-bottom: 1rem;
 }
 
 .btn {
@@ -436,7 +437,7 @@ a, button {
 .hero__proof {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-6);
+  gap: 0.75rem 1.25rem;
   color: var(--muted-brown);
   font-size: var(--text-sm);
 }
@@ -447,55 +448,113 @@ a, button {
   gap: var(--space-2);
 }
 
+.hero__image-wrap {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 6px 30px rgba(31, 54, 84, 0.09), 0 2px 8px rgba(31, 54, 84, 0.05);
+  max-height: 580px;
+  align-self: center;
+}
+
+.hero__image-wrap img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* ---- Hero: tablet ---- */
+@media (max-width: 1024px) {
+  .hero__content {
+    grid-template-columns: 54% 1fr;
+    gap: 1.5rem;
+  }
+  .hero__image-wrap {
+    max-height: 500px;
+  }
+}
+
+/* ---- Hero: mobile ---- */
 @media (max-width: 768px) {
+  .hero {
+    padding-top: 1rem;
+    padding-bottom: 1.25rem;
+  }
+
   .hero__content {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: 1.25rem;
   }
 
   .hero__copy {
     text-align: center;
-    order: 2;
+    order: 1;
+    padding-top: 0;
   }
 
   .hero__image-wrap {
-    order: 1;
-    max-width: 340px;
+    order: 2;
+    max-height: 250px;
+    max-width: 100%;
     margin-inline: auto;
+    border-radius: 0.75rem;
+  }
+
+  .hero__image-wrap img {
+    object-position: 50% 25%;
   }
 
   .hero h1 {
     max-width: none;
     margin-inline: auto;
+    font-size: clamp(1.75rem, 6vw, 2.25rem);
+    margin-bottom: 0.6rem;
   }
 
   .hero__sub {
     margin-inline: auto;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero__badge {
+    margin-bottom: 0.75rem;
   }
 
   .hero__actions {
     justify-content: center;
-    margin-bottom: var(--space-5);
+    margin-bottom: 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .hero__actions .btn--outline {
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-sm);
+    min-height: 40px;
+    border-width: 1px;
   }
 
   .hero__proof {
     justify-content: center;
-    gap: 0.5rem;
+    gap: 0.35rem 0.75rem;
+    font-size: 0.8rem;
   }
 }
 
-.hero__image-wrap {
-  position: relative;
-  border-radius: 1.25rem;
-  overflow: hidden;
-  box-shadow: 0 8px 40px rgba(31, 54, 84, 0.1), 0 2px 12px rgba(31, 54, 84, 0.06);
-}
+/* ---- Hero: small phones ---- */
+@media (max-width: 430px) {
+  .hero__image-wrap {
+    max-height: 220px;
+  }
 
-.hero__image-wrap img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
+  .hero__proof {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+  }
 }
 
 /* ============================================
@@ -1607,7 +1666,7 @@ a, button {
 
         <h1>Finally see what your metabolism is trying to tell you</h1>
 
-        <p class="hero__sub">You feel off, your labs say you’re fine, and nobody can explain the fatigue, brain fog, or cold hands. 98.6° tracks your temperature and pulse daily, spots the patterns blood tests miss, and gives you a report your doctor can actually use.</p>
+        <p class="hero__sub">Your labs say you’re fine, but the fatigue, brain fog, and cold hands won’t stop. 98.6° tracks your temperature and pulse daily, spots the patterns blood tests miss, and gives you a report your doctor can use.</p>
 
         <div class="hero__actions">
           <a href="#pricing" class="btn btn--primary">Get 98.6° for $59.99</a>
