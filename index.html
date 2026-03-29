@@ -487,7 +487,7 @@ a, button {
   .hero {
     padding-top: 0.75rem;
     padding-bottom: 0;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   .hero__content {
@@ -508,21 +508,24 @@ a, button {
 
   .hero__image-wrap {
     order: 2;
-    margin-top: 1.5rem;
-    width: 100%;
-    max-width: 100%;
-    margin-inline: 0;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+    height: 520px;
     border-radius: 0;
-    overflow: visible;
     box-shadow: none;
+    margin-top: 24px;
   }
 
   .hero__image-wrap img {
     width: 100%;
-    height: auto;
-    display: block;
-    object-fit: contain;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
     border-radius: 0;
+    display: block;
   }
 
   .hero h1 {
