@@ -487,7 +487,7 @@ a, button {
   .hero {
     padding-top: 0.75rem;
     padding-bottom: 0;
-    overflow-x: clip;
+    overflow-x: hidden;
   }
 
   .hero__content {
@@ -500,17 +500,29 @@ a, button {
     text-align: center;
     order: 1;
     padding-top: 0;
+    width: 100%;
+    max-width: 100%;
+    padding-inline: 20px;
+    box-sizing: border-box;
   }
 
   .hero__image-wrap {
     order: 2;
     margin-top: 1.5rem;
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 100%;
+    max-width: 100%;
+    margin-inline: 0;
     border-radius: 0;
-    max-width: none;
+    overflow: visible;
+    box-shadow: none;
+  }
+
+  .hero__image-wrap img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    border-radius: 0;
   }
 
   .hero h1 {
@@ -552,16 +564,6 @@ a, button {
   /* Hide trust/proof row on mobile */
   .hero__proof {
     display: none;
-  }
-
-  /* No shadow on mobile image */
-  .hero__image-wrap {
-    box-shadow: none;
-    overflow: visible;
-  }
-
-  .hero__image-wrap img {
-    border-radius: 0;
   }
 }
 
