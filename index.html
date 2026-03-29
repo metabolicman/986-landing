@@ -508,12 +508,12 @@ a, button {
 
   .hero__image-wrap {
     order: 2;
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    overflow: hidden;
-    height: 520px;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    position: static;
+    left: auto;
+    transform: none;
     border-radius: 0;
     box-shadow: none;
     margin-top: 24px;
@@ -521,11 +521,12 @@ a, button {
 
   .hero__image-wrap img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 25%;
-    border-radius: 0;
+    height: auto;
+    max-height: none;
+    object-fit: fill;
+    object-position: unset;
     display: block;
+    border-radius: 12px;
   }
 
   .hero h1 {
