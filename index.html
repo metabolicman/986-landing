@@ -486,7 +486,8 @@ a, button {
 @media (max-width: 768px) {
   .hero {
     padding-top: 0.75rem;
-    padding-bottom: 1rem;
+    padding-bottom: 0;
+    overflow-x: clip;
   }
 
   .hero__content {
@@ -504,9 +505,12 @@ a, button {
   .hero__image-wrap {
     order: 2;
     margin-top: 1.5rem;
-    margin-inline: auto;
-    border-radius: 0.75rem;
-    max-width: 320px;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 0;
+    max-width: none;
   }
 
   .hero h1 {
@@ -553,6 +557,11 @@ a, button {
   /* No shadow on mobile image */
   .hero__image-wrap {
     box-shadow: none;
+    overflow: visible;
+  }
+
+  .hero__image-wrap img {
+    border-radius: 0;
   }
 }
 
