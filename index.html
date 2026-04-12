@@ -508,12 +508,12 @@ a, button {
 
   .hero__image-wrap {
     order: 2;
-    width: 100%;
-    height: auto;
-    overflow: visible;
-    position: static;
-    left: auto;
-    transform: none;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+    height: 680px;
     border-radius: 0;
     box-shadow: none;
     margin-top: 24px;
@@ -521,12 +521,11 @@ a, button {
 
   .hero__image-wrap img {
     width: 100%;
-    height: auto;
-    max-height: none;
-    object-fit: fill;
-    object-position: unset;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    border-radius: 0;
     display: block;
-    border-radius: 12px;
   }
 
   .hero h1 {
@@ -1706,7 +1705,7 @@ a, button {
       </div>
 
       <div class="hero__image-wrap">
-        <img src="./assets/hero-lifestyle.jpg" alt="Woman checking the 98.6° app on her phone, relaxing on a couch with a coastal view" width="848" height="1264" loading="eager">
+        <img src="./assets/hero-lifestyle.jpg" alt="Woman checking the 98.6° app on her phone, relaxing on a couch with a coastal view" width="1024" height="1280" loading="eager">
       </div>
     </div>
   </section>
