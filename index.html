@@ -617,10 +617,22 @@ a, button {
 
 .persona-card {
   background: var(--sand);
-  padding: var(--space-8);
   border-radius: var(--radius-xl);
   border: 1px solid var(--light-grey);
   transition: box-shadow 300ms var(--ease), transform 300ms var(--ease);
+  overflow: hidden;
+}
+
+.persona-card__img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+}
+
+.persona-card__body {
+  padding: var(--space-6) var(--space-8) var(--space-8);
 }
 
 .persona-card:hover {
@@ -629,15 +641,15 @@ a, button {
 }
 
 .persona-card__icon {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: var(--teal-light);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: var(--space-5);
-  font-size: 1.4rem;
+  margin-bottom: var(--space-4);
+  font-size: 1.2rem;
 }
 
 .persona-card h3 {
@@ -1685,6 +1697,36 @@ a, button {
 .reveal-stagger.visible > *:nth-child(6) { transition-delay: 300ms; opacity: 1; transform: translateY(0); }
 .reveal-stagger.visible > *:nth-child(7) { transition-delay: 360ms; opacity: 1; transform: translateY(0); }
 
+/* ============================================
+   EDITORIAL BREAK
+   ============================================ */
+.editorial-break {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  overflow: hidden;
+  margin-block: 0;
+  padding: 0;
+  line-height: 0;
+}
+
+.editorial-break img {
+  width: 100%;
+  display: block;
+  height: auto;
+  max-height: 480px;
+  object-fit: cover;
+  object-position: center 40%;
+}
+
+@media (max-width: 767px) {
+  .editorial-break img {
+    max-height: 240px;
+    object-position: center 35%;
+  }
+}
+
 </style>
 </head>
 
@@ -1765,21 +1807,30 @@ a, button {
 
       <div class="who-for__grid reveal-stagger">
         <div class="persona-card">
-          <div class="persona-card__icon">🌡️</div>
-          <h3>Tired of hearing “Your labs look fine”</h3>
-          <p>Every test comes back normal, but you feel terrible. Blood draws miss the slow shifts that happen day to day. 98.6° catches them, so you walk in with patterns instead of complaints.</p>
+          <img class="persona-card__img" src="./assets/persona-labs.jpg" alt="Woman looking at her phone with a concerned expression at a sunlit coastal kitchen table" width="1626" height="1080" loading="lazy">
+          <div class="persona-card__body">
+            <div class="persona-card__icon">🌡️</div>
+            <h3>Tired of hearing “Your labs look fine”</h3>
+            <p>Every test comes back normal, but you feel terrible. Blood draws miss the slow shifts that happen day to day. 98.6° catches them, so you walk in with patterns instead of complaints.</p>
+          </div>
         </div>
 
         <div class="persona-card">
-          <div class="persona-card__icon">📓</div>
-          <h3>Scattered notes, lost notebooks</h3>
-          <p>Your data is scattered across apps, notebooks, and spreadsheets you can barely find. 98.6° puts everything in one place so you can actually see what’s changing over time.</p>
+          <img class="persona-card__img" src="./assets/persona-notes.jpg" alt="Woman writing in notebooks surrounded by scattered notes and a thermometer on her desk" width="1626" height="1080" loading="lazy">
+          <div class="persona-card__body">
+            <div class="persona-card__icon">📓</div>
+            <h3>Scattered notes, lost notebooks</h3>
+            <p>Your data is scattered across apps, notebooks, and spreadsheets you can barely find. 98.6° puts everything in one place so you can actually see what’s changing over time.</p>
+          </div>
         </div>
 
         <div class="persona-card">
-          <div class="persona-card__icon">🔬</div>
-          <h3>Deep in the research already</h3>
-          <p>You’ve read Barnes and Peat. You already know temperature and pulse matter. What you need now is a tool that actually tracks them, with 271 studies sitting right next to your data.</p>
+          <img class="persona-card__img" src="./assets/persona-research.jpg" alt="Woman reading a book on a couch with chamomile tea, ocean visible through the window" width="1626" height="1080" loading="lazy">
+          <div class="persona-card__body">
+            <div class="persona-card__icon">🔬</div>
+            <h3>Deep in the research already</h3>
+            <p>You’ve read Barnes and Peat. You already know temperature and pulse matter. What you need now is a tool that actually tracks them, with 271 studies sitting right next to your data.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -1828,6 +1879,10 @@ a, button {
       </div>
     </div>
   </section>
+
+  <div class="editorial-break">
+    <img src="./assets/editorial-break.jpg" alt="Woman checking a thermometer in a sunlit coastal kitchen, morning tea and open book on the counter" width="1935" height="1080" loading="lazy">
+  </div>
 
   <!-- ==================== WHY TEMP & PULSE MATTER ==================== -->
   <section class="science section" id="science">
