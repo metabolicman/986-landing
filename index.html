@@ -527,15 +527,16 @@ a, button {
   .hero__bg::after {
     background: linear-gradient(
       to top,
-      rgba(31, 54, 84, 0.88) 0%,
-      rgba(31, 54, 84, 0.6) 45%,
-      rgba(31, 54, 84, 0.2) 70%,
+      rgba(31, 54, 84, 0.92) 0%,
+      rgba(31, 54, 84, 0.7) 40%,
+      rgba(31, 54, 84, 0.4) 65%,
+      rgba(31, 54, 84, 0.15) 85%,
       transparent 100%
     );
   }
 
   .hero__content {
-    padding-top: clamp(6rem, 24vw, 9rem);
+    padding-top: clamp(3.5rem, 14vw, 5rem);
     padding-bottom: clamp(1.5rem, 4vw, 2.5rem);
   }
 
@@ -548,21 +549,26 @@ a, button {
   .hero h1 {
     max-width: none;
     margin-inline: auto;
-    font-size: clamp(1.75rem, 6vw, 2.25rem);
+    font-size: clamp(2rem, 7.5vw, 2.75rem);
     margin-bottom: 0.75rem;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.15);
   }
 
   .hero__sub {
     margin-inline: auto;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     margin-bottom: 1.25rem;
-    line-height: 1.5;
-    max-width: 36ch;
+    line-height: 1.55;
+    max-width: 34ch;
+    color: rgba(255, 255, 255, 0.92);
   }
 
   .hero__badge {
-    margin-bottom: 0.75rem;
-    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.35);
+    padding: 0.4rem 1rem;
   }
 
   .hero__actions {
