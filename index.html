@@ -72,7 +72,6 @@
    RESET & BASE
    ============================================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { overflow-x: clip; }
 
 :root {
   /* Brand Palette */
@@ -1720,10 +1719,7 @@ a, button {
    EDITORIAL BREAK
    ============================================ */
 .editorial-break {
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+  width: 100%;
   overflow: hidden;
   margin-block: 0;
   padding: 0;
