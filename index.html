@@ -78,13 +78,14 @@
   --teal: #4CB7A5;
   --teal-dark: #3a9a8a;
   --teal-light: #e0f3ef;
+  --teal-ink: #287365; /* seafoam darkened for text on light surfaces (5:1 on sand/off-white) */
   --navy: #1F3654;
   --sand: #F7F1E8;
   --coral: #E88868;
   --coral-light: #fdf0eb;
   --off-white: #FFFDF8;
   --sage: #D7E3DC;
-  --muted-brown: #8A7565;
+  --muted-brown: #735F50; /* was #8A7565, darkened to pass AA on sand */
   --light-grey: #E3E0DA;
   --body-grey: #4A4A4A;
   --error: #D9534F;
@@ -167,9 +168,17 @@ a, button {
 }
 
 :focus-visible {
-  outline: 2px solid var(--teal);
+  /* teal-ink keeps the focus ring above 3:1 on sand and off-white */
+  outline: 2px solid var(--teal-ink);
   outline-offset: 3px;
   border-radius: var(--radius-sm);
+}
+
+.hero :focus-visible,
+.whats-inside :focus-visible,
+.final-cta :focus-visible,
+.footer :focus-visible {
+  outline-color: var(--teal);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -246,7 +255,7 @@ a, button {
 }
 
 .header__logo .degree {
-  color: var(--teal);
+  color: var(--teal-ink);
 }
 
 .header__nav {
@@ -265,7 +274,9 @@ a, button {
 }
 
 .header__nav a:hover {
-  color: var(--teal);
+  color: var(--teal-ink);
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .header__cta {
@@ -273,7 +284,8 @@ a, button {
   align-items: center;
   padding: var(--space-2) var(--space-5);
   background: var(--teal);
-  color: #fff !important;
+  color: var(--navy) !important;
+  font-weight: 600;
   border-radius: var(--radius-lg);
   font-weight: 500;
   font-size: var(--text-sm);
@@ -281,16 +293,19 @@ a, button {
 }
 
 .header__cta:hover {
-  background: var(--teal-dark);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
+  background: #6cc4b5;
+  text-decoration: none !important;
 }
 
 /* Mobile nav */
 .header__menu-btn {
   display: none;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 5px;
+  min-width: 44px;
+  min-height: 44px;
   padding: var(--space-2);
   margin-left: auto;
 }
@@ -334,7 +349,7 @@ a, button {
 }
 
 /* ============================================
-   HERO — Cinematic full-bleed
+   HERO: cinematic full-bleed
    ============================================ */
 .hero {
   position: relative;
@@ -379,22 +394,6 @@ a, button {
 .hero__copy {
   max-width: 540px;
   text-align: left;
-}
-
-.hero__badge {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: 0.35rem 0.85rem;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: var(--radius-xl);
-  font-size: var(--text-sm);
-  color: #fff;
-  margin-bottom: 1.25rem;
-  font-weight: 500;
 }
 
 .hero h1 {
@@ -462,20 +461,18 @@ a, button {
 
 .btn--primary {
   background: var(--teal);
-  color: #fff;
-  box-shadow: 0 2px 8px rgba(76, 183, 165, 0.3);
-  transition: all 250ms var(--ease);
+  color: var(--navy);
+  font-weight: 600;
+  transition: background 180ms var(--ease), transform 180ms var(--ease);
 }
 
 .btn--primary:hover {
-  background: var(--teal-dark);
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 6px 20px rgba(76, 183, 165, 0.45);
+  background: #6cc4b5;
 }
 
 .btn--primary:active {
-  transform: translateY(0) scale(0.99);
-  box-shadow: 0 2px 6px rgba(76, 183, 165, 0.3);
+  background: #5fbdad;
+  transform: translateY(1px);
 }
 
 .btn--outline {
@@ -485,15 +482,15 @@ a, button {
 }
 
 .btn--outline:hover {
-  border-color: var(--teal);
-  color: var(--teal);
+  border-color: var(--teal-ink);
+  color: var(--teal-ink);
 }
 
 .hero__proof {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem 1.25rem;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.9);
   font-size: var(--text-sm);
 }
 
@@ -504,7 +501,7 @@ a, button {
 }
 
 .hero__proof svg {
-  stroke: rgba(255, 255, 255, 0.5);
+  stroke: var(--teal);
 }
 
 /* ---- Hero: mobile ---- */
@@ -563,14 +560,6 @@ a, button {
     color: rgba(255, 255, 255, 0.92);
   }
 
-  .hero__badge {
-    margin-bottom: 1rem;
-    font-size: 0.85rem;
-    background: rgba(255, 255, 255, 0.22);
-    border-color: rgba(255, 255, 255, 0.35);
-    padding: 0.4rem 1rem;
-  }
-
   .hero__actions {
     justify-content: center;
   }
@@ -606,12 +595,15 @@ a, button {
 
 .section-label {
   display: inline-block;
-  font-size: var(--text-xs);
+  font-size: var(--text-sm);
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.01em;
+  color: var(--teal-ink);
+  margin-bottom: var(--space-3);
+}
+
+.section-label--on-dark {
   color: var(--teal);
-  margin-bottom: var(--space-4);
 }
 
 .who-for__header h2 {
@@ -653,22 +645,6 @@ a, button {
   padding: var(--space-6) var(--space-8) var(--space-8);
 }
 
-.persona-card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
-}
-
-.persona-card__icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--teal-light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: var(--space-4);
-  font-size: 1.2rem;
-}
 
 .persona-card h3 {
   font-size: var(--text-lg);
@@ -732,10 +708,11 @@ a, button {
 }
 
 .temp-card__number {
+  /* teal-ink: the plain seafoam fails AA even at display size on off-white */
   font-family: var(--font-display);
   font-size: clamp(3.5rem, 2rem + 5vw, 5.5rem);
   font-weight: 700;
-  color: var(--teal);
+  color: var(--teal-ink);
   line-height: 1;
   margin-bottom: var(--space-3);
 }
@@ -852,16 +829,6 @@ a, button {
   border-top: 1px solid var(--light-grey);
 }
 
-.science__trust--sub {
-  text-align: center;
-  max-width: 58ch;
-  margin-inline: auto;
-  color: var(--muted-brown);
-  font-size: var(--text-xs);
-  line-height: 1.7;
-  margin-top: var(--space-3);
-}
-
 /* ============================================
    FEATURE CHECKLIST
    ============================================ */
@@ -896,9 +863,10 @@ a, button {
 }
 
 .feature-checklist__item::before {
+  /* check mark uses teal-ink for 3:1 non-text contrast */
   content: '✓';
   flex-shrink: 0;
-  color: var(--teal);
+  color: var(--teal-ink);
   font-weight: 600;
   font-size: 1em;
 }
@@ -950,24 +918,8 @@ a, button {
 
 .step {
   position: relative;
-  counter-increment: step-counter;
-}
-
-.step__number {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: var(--teal);
-  color: #fff;
-  font-family: var(--font-display);
-  font-size: var(--text-base);
-  font-weight: 700;
-  line-height: 1;
-  margin-bottom: var(--space-4);
-  box-shadow: 0 2px 8px rgba(76, 183, 165, 0.25);
+  border-top: 2px solid var(--teal);
+  padding-top: var(--space-5);
 }
 
 .step h3 {
@@ -1016,7 +968,7 @@ a, button {
 
 .whats-inside__subtitle {
   text-align: center;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.8);
   max-width: 50ch;
   margin-inline: auto;
   margin-bottom: clamp(var(--space-10), 4vw, var(--space-16));
@@ -1045,21 +997,14 @@ a, button {
   transition: background 300ms var(--ease), border-color 300ms var(--ease);
 }
 
-.feature-card:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(76, 183, 165, 0.4);
+.feature-card--wide {
+  grid-column: 1 / -1;
+  background: transparent;
+  border-color: rgba(76, 183, 165, 0.45);
 }
 
-.feature-card__icon {
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-md);
-  background: rgba(76, 183, 165, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: var(--space-5);
-  font-size: 1.25rem;
+.feature-card--wide p {
+  max-width: 60ch;
 }
 
 .feature-card h3 {
@@ -1070,7 +1015,7 @@ a, button {
 }
 
 .feature-card p {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.82);
   line-height: 1.7;
   font-size: var(--text-base);
 }
@@ -1183,7 +1128,7 @@ a, button {
 /* Highlight 98.6° column */
 .compare__table thead th:nth-child(2) {
   background: var(--teal);
-  color: #fff;
+  color: var(--navy);
 }
 
 .compare__table tbody td:nth-child(2) {
@@ -1239,21 +1184,11 @@ a, button {
   background: var(--off-white);
   border-radius: var(--radius-xl);
   padding: clamp(var(--space-8), 4vw, var(--space-12));
-  box-shadow: 0 8px 40px rgba(31, 54, 84, 0.1), 0 2px 12px rgba(76, 183, 165, 0.08);
+  box-shadow: 0 8px 32px rgba(31, 54, 84, 0.08);
   text-align: center;
   border: 2px solid var(--teal);
   position: relative;
   overflow: hidden;
-}
-
-.pricing-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 5px;
-  background: linear-gradient(90deg, var(--teal), var(--coral));
 }
 
 .pricing-card__price {
@@ -1272,7 +1207,7 @@ a, button {
 }
 
 .pricing-card__term strong {
-  color: var(--teal);
+  color: var(--teal-ink);
   font-weight: 600;
 }
 
@@ -1430,7 +1365,7 @@ a, button {
 .research-demo__pill.active {
   background: var(--teal);
   border-color: var(--teal);
-  color: #fff;
+  color: var(--navy);
 }
 
 .research-demo__card {
@@ -1455,11 +1390,10 @@ a, button {
 }
 
 .research-demo__card-label {
-  font-size: var(--text-xs);
+  /* teal-ink for AA */
+  font-size: var(--text-sm);
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--teal);
+  color: var(--teal-ink);
   margin-bottom: var(--space-2);
 }
 
@@ -1558,7 +1492,7 @@ a, button {
 }
 
 .faq__question:hover {
-  color: var(--teal);
+  color: var(--teal-ink);
 }
 
 .faq__icon {
@@ -1605,7 +1539,7 @@ a, button {
 }
 
 .final-cta p {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.82);
   max-width: 44ch;
   margin-inline: auto;
   margin-bottom: var(--space-10);
@@ -1616,11 +1550,6 @@ a, button {
   font-size: var(--text-lg);
   font-weight: 700;
   padding: var(--space-5) var(--space-12);
-  box-shadow: 0 4px 24px rgba(76, 183, 165, 0.4);
-}
-
-.final-cta .btn--primary:hover {
-  box-shadow: 0 6px 32px rgba(76, 183, 165, 0.55);
 }
 
 /* ============================================
@@ -1628,7 +1557,7 @@ a, button {
    ============================================ */
 .footer {
   background: var(--navy);
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.72);
   padding-block: var(--space-10);
 }
 
@@ -1652,14 +1581,16 @@ a, button {
 
 .footer__links {
   display: flex;
-  gap: var(--space-6);
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-6);
   list-style: none;
 }
 
 .footer__links a {
-  color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.75);
   text-decoration: none;
-  font-size: var(--text-xs);
+  font-size: var(--text-sm);
 }
 
 .footer__links a:hover {
@@ -1678,7 +1609,7 @@ a, button {
 }
 
 .footer__bottom a {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.72);
   text-decoration: none;
 }
 
@@ -1689,31 +1620,54 @@ a, button {
 /* ============================================
    SCROLL ANIMATIONS
    ============================================ */
-.reveal {
-  opacity: 0.12;
-  transform: translateY(12px);
-  transition: opacity 400ms var(--ease), transform 400ms var(--ease);
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Stagger children */
+.reveal,
 .reveal-stagger > * {
-  opacity: 0.12;
-  transform: translateY(10px);
-  transition: opacity 350ms var(--ease), transform 350ms var(--ease);
+  /* Visible by default. Motion is opt-in below, so content never hides if JS fails
+     or the visitor prefers reduced motion. */
+  opacity: 1;
 }
 
-.reveal-stagger.visible > *:nth-child(1) { transition-delay: 0ms; opacity: 1; transform: translateY(0); }
-.reveal-stagger.visible > *:nth-child(2) { transition-delay: 60ms; opacity: 1; transform: translateY(0); }
-.reveal-stagger.visible > *:nth-child(3) { transition-delay: 120ms; opacity: 1; transform: translateY(0); }
-.reveal-stagger.visible > *:nth-child(4) { transition-delay: 180ms; opacity: 1; transform: translateY(0); }
-.reveal-stagger.visible > *:nth-child(5) { transition-delay: 240ms; opacity: 1; transform: translateY(0); }
-.reveal-stagger.visible > *:nth-child(6) { transition-delay: 300ms; opacity: 1; transform: translateY(0); }
-.reveal-stagger.visible > *:nth-child(7) { transition-delay: 360ms; opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: no-preference) {
+  /* Scroll reveal: a short 12px rise so each section settles in as you reach it.
+     Purpose: pace the long page. Runs once per section, never loops. */
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 500ms var(--ease), transform 500ms var(--ease);
+  }
+  .js .reveal.visible { opacity: 1; transform: none; }
+
+  .js .reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 450ms var(--ease), transform 450ms var(--ease);
+  }
+  .js .reveal-stagger.visible > * { opacity: 1; transform: none; }
+  .js .reveal-stagger.visible > *:nth-child(2) { transition-delay: 70ms; }
+  .js .reveal-stagger.visible > *:nth-child(3) { transition-delay: 140ms; }
+  .js .reveal-stagger.visible > *:nth-child(n+4) { transition-delay: 200ms; }
+
+  /* Hero reveal: the photo settles from a slight zoom while the headline, copy and
+     buttons rise in order. Purpose: one calm first impression that leads the eye
+     from headline to price button. Plays once on load. */
+  .hero__bg img { animation: hero-settle 1600ms var(--ease) both; }
+  .hero__copy > * { animation: hero-rise 700ms var(--ease) both; }
+  .hero__copy > :nth-child(1) { animation-delay: 120ms; }
+  .hero__copy > :nth-child(2),
+  .hero__copy > :nth-child(3) { animation-delay: 260ms; }
+  .hero__copy > :nth-child(4) { animation-delay: 400ms; }
+  .hero__copy > :nth-child(5) { animation-delay: 520ms; }
+}
+
+@keyframes hero-settle {
+  from { transform: scale(1.04); }
+  to { transform: scale(1); }
+}
+
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
 
 /* ============================================
    EDITORIAL BREAK
@@ -1805,6 +1759,7 @@ a, button {
 </head>
 
 <body>
+  <script>document.documentElement.classList.add('js');</script>
   <!-- ==================== HEADER ==================== -->
   <header class="header" id="header">
     <div class="header__inner">
@@ -1812,7 +1767,7 @@ a, button {
         98.6<span class="degree">°</span>
       </a>
 
-      <button class="header__menu-btn" aria-label="Toggle navigation" id="menu-btn">
+      <button type="button" class="header__menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="main-nav" id="menu-btn">
         <span></span><span></span><span></span>
       </button>
 
@@ -1832,20 +1787,15 @@ a, button {
   <!-- ==================== HERO ==================== -->
   <section class="hero" id="hero">
     <div class="hero__bg">
-      <img src="./assets/hero-cinematic.jpg" alt="Woman relaxing on a couch with a warm drink in a sunlit coastal living room, ocean waves visible through floor-to-ceiling windows" width="1935" height="1080" loading="eager">
+      <img src="./assets/hero-cinematic.webp" srcset="./assets/hero-cinematic-960.webp 960w, ./assets/hero-cinematic.webp 1920w" sizes="100vw" alt="Woman relaxing on a couch with a warm drink in a sunlit coastal living room, ocean waves visible through floor-to-ceiling windows" width="1920" height="1072" loading="eager" fetchpriority="high">
     </div>
 
     <div class="container hero__content">
       <div class="hero__copy">
-        <span class="hero__badge">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v8m0 0l-2-2m2 2l2-2M5 12a7 7 0 0014 0"/></svg>
-          One-time purchase. Lifetime access.
-        </span>
-
         <h1>Finally see what your metabolism is trying to tell you</h1>
 
-        <p class="hero__sub hero__sub--desktop">Your labs say you’re fine, but the fatigue, brain fog, and cold hands won’t stop. 98.6° tracks your temperature and pulse daily, spots the patterns blood tests miss, and gives you a report your doctor can use.</p>
-        <p class="hero__sub hero__sub--mobile">98.6° tracks your daily temperature and pulse to reveal the metabolic patterns blood tests miss.</p>
+        <p class="hero__sub hero__sub--desktop">Your labs say you’re fine. But the tiredness, brain fog, and cold hands won’t go away. 98.6° helps you log your temperature and pulse each day, see your patterns over time, and bring a clear report to your doctor.</p>
+        <p class="hero__sub hero__sub--mobile">Log your temperature and pulse each day, and see how your patterns change over time.</p>
 
         <div class="hero__actions">
           <a href="#pricing" class="btn btn--primary">Get 98.6° for $59.99</a>
@@ -1854,15 +1804,15 @@ a, button {
 
         <div class="hero__proof">
           <span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
-            Backed by 271 studies
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+            271 studies in the library
           </span>
           <span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
-            $59.99 once, no subscriptions
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+            $59.99 once, lifetime access
           </span>
           <span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
             Doctor-ready reports
           </span>
         </div>
@@ -1874,36 +1824,33 @@ a, button {
   <section class="who-for section" id="who-for">
     <div class="container">
       <div class="who-for__header reveal">
-        <span class="section-label">Who This Is For</span>
-        <h2>You know something is wrong. Your labs keep saying “normal.”</h2>
-        <p>Cold hands, brain fog, fatigue that won’t lift. You’re not imagining it. 98.6° gives you real numbers that match what you already feel, and a report your doctor can actually work with.</p>
+        <span class="section-label">Who it’s for</span>
+        <h2>You feel off. Your labs keep saying “normal.”</h2>
+        <p>Cold hands, brain fog, and tiredness that won’t lift are hard to describe. 98.6° gives you daily numbers to look at, and a report you can bring to your doctor.</p>
       </div>
 
       <div class="who-for__grid reveal-stagger">
         <div class="persona-card">
-          <img class="persona-card__img" src="./assets/persona-labs.jpg" alt="Woman looking at her phone with a concerned expression at a sunlit coastal kitchen table" width="1626" height="1080" loading="lazy">
+          <img class="persona-card__img" src="./assets/still-labs.webp" alt="A printed lab result sheet, a phone, and a mug of coffee on a sunlit kitchen table by the sea" width="960" height="640" loading="lazy" decoding="async">
           <div class="persona-card__body">
-            <div class="persona-card__icon">🌡️</div>
             <h3>Tired of hearing “Your labs look fine”</h3>
-            <p>Every test comes back normal, but you feel terrible. Blood draws miss the slow shifts that happen day to day. 98.6° catches them, so you walk in with patterns instead of complaints.</p>
+            <p>Every test comes back normal, but you still don’t feel right. A blood draw is one moment in time. Daily readings show how your numbers move from day to day, so you can bring patterns, not just a list of symptoms.</p>
           </div>
         </div>
 
         <div class="persona-card">
-          <img class="persona-card__img" src="./assets/persona-notes.jpg" alt="Woman writing in notebooks surrounded by scattered notes and a thermometer on her desk" width="1626" height="1080" loading="lazy">
+          <img class="persona-card__img" src="./assets/still-notes.webp" alt="Open notebooks full of handwritten readings, sticky notes, a pencil, and a digital thermometer on a wooden desk" width="960" height="640" loading="lazy" decoding="async">
           <div class="persona-card__body">
-            <div class="persona-card__icon">📓</div>
             <h3>Scattered notes, lost notebooks</h3>
-            <p>Your data is scattered across apps, notebooks, and spreadsheets you can barely find. 98.6° puts everything in one place so you can actually see what’s changing over time.</p>
+            <p>Your readings are spread across apps, notebooks, and spreadsheets. 98.6° keeps them in one place so you can see what changes over time.</p>
           </div>
         </div>
 
         <div class="persona-card">
-          <img class="persona-card__img" src="./assets/persona-research.jpg" alt="Woman reading a book on a couch with chamomile tea, ocean visible through the window" width="1626" height="1080" loading="lazy">
+          <img class="persona-card__img" src="./assets/still-research.webp" alt="A stack of old hardcover books with reading glasses and a cup of tea beside an armchair, with the coast outside the window" width="960" height="640" loading="lazy" decoding="async">
           <div class="persona-card__body">
-            <div class="persona-card__icon">🔬</div>
             <h3>Deep in the research already</h3>
-            <p>You’ve read Barnes and Peat. You already know temperature and pulse matter. What you need now is a tool that actually tracks them, with 271 studies sitting right next to your data.</p>
+            <p>You’ve read Barnes and Peat. You already know temperature and pulse matter. What you need now is a simple way to track them, with 271 studies right next to your data.</p>
           </div>
         </div>
       </div>
@@ -1915,17 +1862,17 @@ a, button {
     <div class="container">
       <div class="metabolism__inner">
         <div class="metabolism__text reveal">
-          <span class="section-label">Understanding Your Body</span>
+          <span class="section-label">Understanding your body</span>
           <h2>Your body already tells you when something’s off</h2>
           <p>When your metabolism is running well, you feel warm, sharp, and steady. When it slows down, you feel cold, foggy, and drained. You already recognize the difference. You just haven’t had a simple way to measure it.</p>
-          <p>Temperature and resting pulse are the most basic metabolic signals your body produces. They reveal patterns that a single blood draw will almost always miss.</p>
-          <p>Dr. Broda Barnes and Ray Peat spent decades studying how daily temperature and pulse readings catch metabolic slowdowns years before lab panels do. 98.6° puts that same approach in your pocket.</p>
+          <p>Temperature and resting pulse are two of the simplest signals your body gives off. Tracked every day, they show how you change over time, which one blood draw can’t do.</p>
+          <p>Dr. Broda Barnes and Ray Peat spent decades writing about daily temperature and pulse as signs of how the body makes energy. 98.6° gives you a simple way to track them.</p>
         </div>
 
         <div class="metabolism__visual reveal">
           <div class="temp-card">
             <div class="temp-card__number">98.6°</div>
-            <div class="temp-card__label">The number that matters</div>
+            <div class="temp-card__label">Example day: five readings</div>
             <div class="temp-card__bars">
               <div class="temp-bar">
                 <span class="temp-bar__label">Waking</span>
@@ -1955,16 +1902,16 @@ a, button {
   </section>
 
   <div class="editorial-break">
-    <img src="./assets/editorial-break.jpg" alt="Woman checking a thermometer in a sunlit coastal kitchen, morning tea and open book on the counter" width="1935" height="1080" loading="lazy">
+    <img src="./assets/morning-reading.webp" alt="A hand holding a digital thermometer by a window at sunrise, with tea and a notebook on the sill and the coast beyond" width="1920" height="823" loading="lazy" decoding="async">
   </div>
 
   <!-- ==================== WHY TEMP & PULSE MATTER ==================== -->
   <section class="science section" id="science">
     <div class="container">
       <div class="science__header reveal">
-        <span class="section-label">The Science</span>
-        <h2>This isn’t new science. It’s science the field left behind.</h2>
-        <p>For decades, doctors read metabolism through temperature and pulse. Then the field moved on to expensive labs and wearable devices. The research never stopped backing the basics, though. It just got buried.</p>
+        <span class="section-label">The science</span>
+        <h2>Temperature and pulse are some of the oldest checks in medicine</h2>
+        <p>Doctors once used them to judge how fast the body was running. Today most visits lean on lab work. The research on temperature and pulse is still there, and the library puts it in one place.</p>
       </div>
 
       <div class="science__columns reveal-stagger">
@@ -1974,18 +1921,17 @@ a, button {
         </div>
 
         <div class="science__col">
-          <h3>Blood tests miss things. Daily tracking doesn’t.</h3>
-          <p>Large studies connect low temperature and slow pulse with real risks. Dr. Barnes was seeing this in patients decades ago. Now you can see it in yourself.</p>
+          <h3>One blood test is one moment. Daily tracking shows the trend.</h3>
+          <p>Published studies have looked at body temperature and resting pulse over many years. Dr. Barnes wrote about these readings in his patients decades ago. The library links to the studies so you can read them yourself.</p>
         </div>
 
         <div class="science__col">
-          <h3>Stress has a temperature. It’s low.</h3>
-          <p>When your body runs on stress hormones instead of real energy production, you feel the difference clearly. Tracking your numbers over time shows you exactly what’s happening.</p>
+          <h3>See how stress shows up in your numbers</h3>
+          <p>Tag the stressful days. Then compare your temperature and pulse on those days with your calm ones.</p>
         </div>
       </div>
 
-      <p class="science__trust reveal"><span data-count="271">271</span> published studies across <span data-count="24">24</span> topics. Dedicated sections on Barnes, Peat, and how temperature shifts across the menstrual cycle.</p>
-      <p class="science__trust--sub reveal">Three foundation sections explain the science behind the app: Dr. Barnes on temperature testing, Dr. Peat on energy and metabolism, and a guide to temperature changes across the menstrual cycle.</p>
+      <p class="science__trust reveal">271 published studies across 24 topics. That includes three foundation sections: Dr. Barnes on temperature testing, Ray Peat on energy and metabolism, and how temperature changes across the menstrual cycle.</p>
     </div>
   </section>
 
@@ -1993,14 +1939,13 @@ a, button {
   <section class="how-works section" id="how-works">
     <div class="container">
       <div class="how-works__header reveal">
-        <span class="section-label">How It Works</span>
-        <h2>See your first patterns within a week</h2>
-        <p>No special hardware, no complicated setup. Just a thermometer you probably already own and five seconds of your morning.</p>
+        <span class="section-label">How it works</span>
+        <h2>Your patterns get clearer as the days add up</h2>
+        <p>No special hardware or setup. You need a basic thermometer and a few seconds for each reading.</p>
       </div>
 
       <div class="steps reveal-stagger">
         <div class="step">
-          <div class="step__number">01</div>
           <h3>Log your reading</h3>
           <p>Open the app, tap QuickAdd, and enter your temperature and pulse. Tag what you ate, how you slept, and how you’re feeling. The whole thing takes five seconds.</p>
           <div class="step__icon-row">
@@ -2011,7 +1956,6 @@ a, button {
         </div>
 
         <div class="step">
-          <div class="step__number">02</div>
           <h3>See your patterns</h3>
           <p>The app watches for 13 specific patterns across your data: cycle shifts, supplement effects, post-meal drops, and time-of-day changes. It surfaces what’s moving and when, so you don’t have to guess.</p>
           <div class="step__icon-row">
@@ -2022,9 +1966,8 @@ a, button {
         </div>
 
         <div class="step">
-          <div class="step__number">03</div>
           <h3>Walk in prepared</h3>
-          <p>Generate a Doctor Visit Report your provider can read in two minutes. You’re not describing vague symptoms anymore. You’re showing real trends backed by daily data.</p>
+          <p>Make a Doctor Visit Report in one tap. It’s a short, printable summary of your trends, so you can show your doctor your numbers instead of trying to remember them.</p>
           <div class="step__icon-row">
             <span class="step__tag">Doctor Report</span>
             <span class="step__tag">Standard Report</span>
@@ -2039,51 +1982,44 @@ a, button {
   <section class="whats-inside section" id="features">
     <div class="container">
       <div class="reveal">
-        <span class="section-label" style="color: var(--teal);">What's Inside</span>
+        <span class="section-label section-label--on-dark">What’s inside</span>
         <h2>Everything inside the app</h2>
-        <p class="whats-inside__subtitle">No ads, no tracking, no upsells. Just the tools you need to make your numbers mean something.</p>
+        <p class="whats-inside__subtitle">No ads, no tracking, and no upsells. Every feature comes with the one-time price.</p>
       </div>
 
       <div class="features-grid reveal-stagger">
         <div class="feature-card">
-          <div class="feature-card__icon">📊</div>
           <h3>Five daily check-ins, five seconds each</h3>
           <p>Log your temperature and pulse, then tag what you ate, how you slept, and how you’re feeling. 131 tags across 19 categories. QuickAdd keeps every entry under five seconds.</p>
         </div>
 
         <div class="feature-card">
-          <div class="feature-card__icon">⚡</div>
           <h3>13 patterns the app finds for you</h3>
           <p>Low temperature streaks, post-meal drops, supplement effects. The app spots them automatically and shows you exactly what changed, so you don’t have to dig through raw numbers.</p>
         </div>
 
         <div class="feature-card">
-          <div class="feature-card__icon">🌙</div>
           <h3>See how your cycle changes your numbers</h3>
           <p>Log your phase with every reading. The app picks up 4 cycle-specific patterns and shows how your temperature and pulse shift across all 4 phases.</p>
         </div>
 
         <div class="feature-card">
-          <div class="feature-card__icon">💊</div>
-          <h3>Find out if your supplements actually work</h3>
-          <p>Log what you take, how much, and when. The app compares your 14-day averages before and after, so you get a real answer instead of a guess.</p>
+          <h3>See how a supplement lines up with your numbers</h3>
+          <p>Log what you take, how much, and when. The app compares your 14-day averages before and after you started, so you can see what changed.</p>
         </div>
 
         <div class="feature-card">
-          <div class="feature-card__icon">📚</div>
           <h3>271 studies, translated into plain English</h3>
           <p>Every topic in the library covers the research behind what you’re tracking. Wondering about a specific supplement? Type it into “Ask 98.6°” and get pointed straight to the relevant studies.</p>
         </div>
 
         <div class="feature-card">
-          <div class="feature-card__icon">🩺</div>
           <h3>Walk into your appointment with real data</h3>
-          <p>One tap generates a clean PDF with your trends, cycle data, supplement logs, and reference ranges. Your doctor reads it in two minutes, and the conversation changes completely.</p>
+          <p>One tap makes a clean PDF with your trends, cycle data, supplement logs, and reference ranges. Bring it to your appointment so you can talk about real numbers.</p>
         </div>
 
-        <div class="feature-card">
-          <div class="feature-card__icon">🔒</div>
-          <h3>100% private. No exceptions.</h3>
+        <div class="feature-card feature-card--wide">
+          <h3>Your data stays on your device</h3>
           <p>No account, no cloud, nothing leaves your device. It works offline after the first load and installs from any browser on any phone, tablet, or computer. Your data stays yours.</p>
         </div>
 
@@ -2095,9 +2031,9 @@ a, button {
   <section class="compare section" id="compare">
     <div class="container">
       <div class="compare__header reveal">
-        <span class="section-label">How 98.6° Compares</span>
-        <h2>Other apps track glucose, sleep, or steps. None of them track metabolism.</h2>
-        <p>98.6° is the only app built specifically for temperature and pulse-based metabolic tracking.</p>
+        <span class="section-label">How 98.6° compares</span>
+        <h2>Other apps track glucose, sleep, or steps. 98.6° is built for temperature and pulse.</h2>
+        <p>Here is how it compares with apps people often ask about.</p>
       </div>
 
       <div class="compare__scroll reveal">
@@ -2141,43 +2077,43 @@ a, button {
               </tr>
               <tr>
                 <td>Tracks temp + pulse together</td>
-                <td>✅ Multi-point daily</td>
-                <td>❌ Glucose only</td>
-                <td>❌ Breath CO₂ only</td>
+                <td>Yes, several times a day</td>
+                <td>No, glucose only</td>
+                <td>No, breath CO₂ only</td>
                 <td>Overnight temp deviation only (no absolute °F)</td>
                 <td>Manual entry only</td>
               </tr>
               <tr>
                 <td>Metabolic ranges</td>
-                <td>✅ Barnes-style zones</td>
-                <td>❌</td>
-                <td>❌</td>
-                <td>❌</td>
-                <td>❌</td>
+                <td>Yes, Barnes-style zones</td>
+                <td>No</td>
+                <td>No</td>
+                <td>No</td>
+                <td>No</td>
               </tr>
               <tr>
                 <td>Research library</td>
-                <td>✅ 271 studies, 24 entries</td>
-                <td>❌</td>
-                <td>❌</td>
-                <td>❌</td>
-                <td>❌</td>
+                <td>Yes, 271 studies, 24 topics</td>
+                <td>No</td>
+                <td>No</td>
+                <td>No</td>
+                <td>No</td>
               </tr>
               <tr>
                 <td>Doctor-ready reports</td>
-                <td>✅ One-tap PDF</td>
-                <td>❌</td>
-                <td>❌</td>
-                <td>❌</td>
+                <td>Yes, one-tap PDF</td>
+                <td>No</td>
+                <td>No</td>
+                <td>No</td>
                 <td>CSV export only</td>
               </tr>
               <tr>
                 <td>Cycle tracking</td>
-                <td>✅ 4 phases + 4 pattern detections</td>
-                <td>❌</td>
-                <td>❌</td>
-                <td>✅ (via Natural Cycles)</td>
-                <td>✅</td>
+                <td>Yes, 4 phases + 4 cycle patterns</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Yes, via Natural Cycles</td>
+                <td>Yes</td>
               </tr>
               <tr>
                 <td>Data ownership</td>
@@ -2200,9 +2136,9 @@ a, button {
   <section class="pricing section" id="pricing">
     <div class="container">
       <div class="pricing__header reveal">
-        <span class="section-label">Simple Pricing</span>
-        <h2>One price. Everything included. Yours forever.</h2>
-        <p>$59.99, one time. No subscription, no hidden fees, no premium tiers. You pay once and keep everything, including all future updates.</p>
+        <span class="section-label">Simple pricing</span>
+        <h2>One price, with everything included</h2>
+        <p>$59.99, one time. No subscription and no hidden fees. You pay once and keep every feature, plus all future updates.</p>
       </div>
 
       <div class="pricing-card reveal">
@@ -2220,7 +2156,7 @@ a, button {
           <li>Search the whole library with “Ask 98.6°”</li>
           <li>Generate doctor-ready PDF reports in one tap</li>
           <li>100% private: no accounts, no cloud, works offline</li>
-          <li>Smart daily reminders that keep your tracking streak alive</li>
+          <li>Daily reminders at a time you choose</li>
           <li>All future updates included</li>
         </ul>
 
@@ -2237,7 +2173,7 @@ a, button {
   <section class="feature-checklist section" id="feature-list">
     <div class="container">
       <div class="feature-checklist__header reveal">
-        <span class="section-label">Everything Included</span>
+        <span class="section-label">Everything included</span>
         <h2>Everything you get</h2>
         <p>One purchase unlocks every feature. No tiers, no upsells, no limits.</p>
       </div>
@@ -2268,12 +2204,13 @@ a, button {
       <div class="research-demo__header reveal">
         <span class="section-label">Preview</span>
         <h2>Try the research library</h2>
-        <p>Pick a compound and see how the library works. Every entry breaks down the published research in plain English, so you know what you’re taking and why it matters.</p>
+        <p>Pick a compound to see how a library entry reads. Each one sums up the published research in plain English.</p>
       </div>
 
       <div class="research-demo__ui reveal">
+        <label class="sr-only" for="demo-search">Search the demo compounds</label>
         <div class="research-demo__input-wrap">
-          <svg class="research-demo__input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <svg class="research-demo__input-icon" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
           <input type="text" class="research-demo__input" id="demo-search" placeholder="Search demo compounds (e.g. taurine)…" autocomplete="off">
         </div>
 
@@ -2284,7 +2221,7 @@ a, button {
           <button class="research-demo__pill" data-compound="vitamin k2">Vitamin K2</button>
         </div>
 
-        <div id="demo-result"></div>
+        <div id="demo-result" aria-live="polite"></div>
 
         <div class="research-demo__cta" id="demo-cta" style="display:none;">
           <a href="#pricing" class="btn btn--primary">Unlock the full library in 98.6°</a>
@@ -2305,7 +2242,7 @@ a, button {
         <div class="faq__item">
           <button class="faq__question" aria-expanded="false">
             Is 98.6° a medical app?
-            <svg class="faq__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <svg class="faq__icon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </button>
           <div class="faq__answer">
             <p>No. 98.6° is a tracking and learning tool that doesn't diagnose or treat anything. It helps you understand your own numbers and have better conversations with your doctor.</p>
@@ -2315,7 +2252,7 @@ a, button {
         <div class="faq__item">
           <button class="faq__question" aria-expanded="false">
             What do I need to get started?
-            <svg class="faq__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <svg class="faq__icon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </button>
           <div class="faq__answer">
             <p>A cheap digital thermometer and your finger on your wrist. That’s it. No wearables, no Bluetooth, no special hardware, and it runs in your browser on any device.</p>
@@ -2325,27 +2262,27 @@ a, button {
         <div class="faq__item">
           <button class="faq__question" aria-expanded="false">
             Is my data stored in the cloud?
-            <svg class="faq__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <svg class="faq__icon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </button>
           <div class="faq__answer">
-            <p>No, everything stays on your device with no accounts, no cloud, and no third-party access. You can export to CSV anytime if you want a backup.</p>
+            <p>No. Everything stays on your device, with no account, no cloud, and no third-party access. You can save a backup file or export to CSV anytime.</p>
           </div>
         </div>
 
         <div class="faq__item">
           <button class="faq__question" aria-expanded="false">
             Why temperature and pulse instead of a CGM or wearable?
-            <svg class="faq__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <svg class="faq__icon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </button>
           <div class="faq__answer">
-            <p>A CGM tracks blood sugar, and a wearable tracks sleep and steps, but neither one tells you how your metabolism is actually running. Temperature and pulse do, they cost nothing to measure, and research going back to Dr. Barnes shows they catch patterns that blood tests miss.</p>
+            <p>A CGM tracks blood sugar. A wearable tracks sleep and steps. Temperature and pulse are cheap to measure and easy to repeat every day. Dr. Barnes and Ray Peat wrote about them as everyday signs of metabolism, and the library has the studies so you can judge for yourself.</p>
           </div>
         </div>
 
         <div class="faq__item">
           <button class="faq__question" aria-expanded="false">
             What is the Research Library?
-            <svg class="faq__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <svg class="faq__icon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </button>
           <div class="faq__answer">
             <p>24 topics covering 271 real studies on vitamins, minerals, amino acids, plus foundation sections on Barnes, Peat, and the menstrual cycle. Each entry has food sources, cautions, and links to the originals. You can also type any question into “Ask 98.6°” to find what’s most relevant.</p>
@@ -2355,7 +2292,7 @@ a, button {
         <div class="faq__item">
           <button class="faq__question" aria-expanded="false">
             Is there a subscription after I buy?
-            <svg class="faq__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <svg class="faq__icon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </button>
           <div class="faq__answer">
             <p>No. Pay once, keep it forever. No monthly fees, no premium tiers, no upsells, and updates are free.</p>
@@ -2365,7 +2302,7 @@ a, button {
         <div class="faq__item">
           <button class="faq__question" aria-expanded="false">
             What is a web app? Why isn't 98.6° in the App Store?
-            <svg class="faq__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <svg class="faq__icon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </button>
           <div class="faq__answer">
             <p>98.6° runs in your browser, whether that’s Safari, Chrome, or anything else. You don’t download it from the App Store or Google Play. Just open the link, tap “Add to Home Screen,” and it works like any other app.</p>
@@ -2376,10 +2313,10 @@ a, button {
         <div class="faq__item">
           <button class="faq__question" aria-expanded="false">
             Do I have to remember to log every day?
-            <svg class="faq__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <svg class="faq__icon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </button>
           <div class="faq__answer">
-            <p>No. Once you’ve logged a few entries, 98.6° can send a gentle daily reminder at the time you choose. If you’re on a streak, it switches from a generic nudge to a streak-aware message so you stay motivated, not annoyed. You can turn it off anytime from the Profile tab, and it works on any device that supports browser notifications. Note: on iOS, you’ll need to add the app to your home screen first.</p>
+            <p>No. Once you’ve logged a few entries, 98.6° can send a gentle daily reminder at the time you choose. If you’re on a streak, the message mentions it. You can turn it off anytime from the Profile tab, and it works on any device that supports browser notifications. Note: on iOS, you’ll need to add the app to your home screen first.</p>
           </div>
         </div>
       </div>
@@ -2389,8 +2326,8 @@ a, button {
   <!-- ==================== FINAL CTA ==================== -->
   <section class="final-cta section">
     <div class="container reveal">
-      <h2>Your body has been sending signals this whole time.</h2>
-      <p>Now you have a way to read them. One purchase, yours forever.</p>
+      <h2>Start your first week of readings</h2>
+      <p>One purchase, yours for life.</p>
       <a href="#pricing" class="btn btn--primary">Get 98.6° for $59.99</a>
     </div>
   </section>
@@ -2430,6 +2367,7 @@ a, button {
       nav.querySelectorAll('a').forEach(function(link) {
         link.addEventListener('click', function() {
           nav.classList.remove('open');
+          menuBtn.setAttribute('aria-expanded', 'false');
         });
       });
     }
@@ -2456,39 +2394,13 @@ a, button {
             observer.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      }, { threshold: 0.01, rootMargin: '0px 0px -8% 0px' });
 
       reveals.forEach(function(el) {
         observer.observe(el);
       });
     } else {
       reveals.forEach(function(el) { el.classList.add('visible'); });
-    }
-
-    // Number counter animation for stat elements
-    var counters = document.querySelectorAll('[data-count]');
-    if (counters.length && 'IntersectionObserver' in window) {
-      var countObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting && !entry.target.dataset.counted) {
-            entry.target.dataset.counted = 'true';
-            var target = parseInt(entry.target.dataset.count);
-            var duration = 1200;
-            var start = 0;
-            var startTime = null;
-            function step(timestamp) {
-              if (!startTime) startTime = timestamp;
-              var progress = Math.min((timestamp - startTime) / duration, 1);
-              var eased = 1 - Math.pow(1 - progress, 3);
-              entry.target.textContent = Math.floor(eased * target);
-              if (progress < 1) requestAnimationFrame(step);
-              else entry.target.textContent = target;
-            }
-            requestAnimationFrame(step);
-          }
-        });
-      }, { threshold: 0.5 });
-      counters.forEach(function(el) { countObserver.observe(el); });
     }
 
     // FAQ accordion
@@ -2572,7 +2484,7 @@ a, button {
           '<p class="research-demo__card-summary">' + c.summary + '</p>' +
           '<p class="research-demo__card-label">How it may relate to metabolism</p>' +
           '<ul>' + bullets + '</ul>' +
-          '<p class="research-demo__card-footer">Backed by 271 published studies in the full library.</p>' +
+          '<p class="research-demo__card-footer">The full library has 271 studies across 24 topics.</p>' +
         '</div>';
       cta.style.display = 'block';
       pills.forEach(function(p) {
